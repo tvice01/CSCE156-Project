@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<product>
+  <code>poiu8yt</code>
+  <type>F</type>
+  <label>Oil Change</label>
+  <partsCost>25.0</partsCost>
+  <laborRate>30.0</laborRate>
+</product>
+<product>
+  <code>zxc3c</code>
+  <type>R</type>
+  <label>Ford Taurus</label>
+  <dailyCost>75.0</dailyCost>
+  <deposit>200.0</deposit>
+  <cleaningFee>35.0</cleaningFee>
+</product>
+<product>
+  <code>86sdf7</code>
+  <type>F</type>
+  <label>Windshield Replacement</label>
+  <partsCost>200.0</partsCost>
+  <laborRate>50.0</laborRate>
+</product>
+<product>
+  <code>39msn</code>
+  <type>T</type>
+  <label>Tow &gt; 20 miles</label>
+  <costPerMile>5.5</costPerMile>
+</product>
+<product>
+  <code>oasn02d</code>
+  <type>C</type>
+  <label>Coffee</label>
+  <cost>1.75</cost>
+</product>
+<product>
+  <code>0sli7</code>
+  <type>R</type>
+  <label>Porsche 911</label>
+  <dailyCost>2500.0</dailyCost>
+  <deposit>15000.0</deposit>
+  <cleaningFee>100.0</cleaningFee>
+</product>
+<product>
+  <code>bz4y32</code>
+  <type>T</type>
+  <label>Tow &lt; 20 miles</label>
+  <costPerMile>4.5</costPerMile>
+</product>

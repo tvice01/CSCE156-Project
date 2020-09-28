@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<customers>
+<customer>
+  <code>iow070</code>
+  <type>B</type>
+  <name>State of Nebraska</name>
+  <primaryContact>
+    <code>987fyg</code>
+    <firstName> Derek</firstName>
+    <lastName>Bishop</lastName>
+    <address>
+      <street>101 R Street</street>
+      <city>Sioux City</city>
+      <state>IA</state>
+      <zip>51106</zip>
+      <country>USA</country>
+    </address>
+    <emails>
+      <string>derekbishop@morningside.edu</string>
+    </emails>
+  </primaryContact>
+  <address>
+    <street>100 W Fake Street</street>
+    <city>Albaquerque</city>
+    <state>NM</state>
+    <zip>80706</zip>
+    <country>USA</country>
+  </address>
+</customer>
+<customer>
+  <code>rac998</code>
+  <type>P</type>
+  <name>Cars</name>
+  <primaryContact>
+    <code>cba321</code>
+    <firstName> Andrew</firstName>
+    <lastName>Rodgers</lastName>
+    <address>
+      <street>1011 Jones Street</street>
+      <city> Omaha</city>
+      <state>NE</state>
+      <zip>68102</zip>
+      <country>USA</country>
+    </address>
+    <emails>
+      <string>arodgers3@hotmail.com</string>
+    </emails>
+  </primaryContact>
+  <address>
+    <street>2740 Madison Avenue</street>
+    <city> Lincoln</city>
+    <state> NE</state>
+    <zip>68504</zip>
+    <country>USA</country>
+  </address>
+</customer>
+<customer>
+  <code>dem432</code>
+  <type>B</type>
+  <name>Demolition Derby</name>
+  <primaryContact>
+    <code>len890</code>
+    <firstName> Ava</firstName>
+    <lastName>Robbins</lastName>
+    <address>
+      <street>16255 NE 36th Way</street>
+      <city>Redmond</city>
+      <state>WA</state>
+      <zip>98052</zip>
+      <country>USA</country>
+    </address>
+    <emails>
+      <string>avarobbins@gmail.com</string>
+      <string>arobbins@yahoo.com</string>
+    </emails>
+  </primaryContact>
+  <address>
+    <street>126 Roosevelt Ave</street>
+    <city>Overland Park</city>
+    <state>KS</state>
+    <zip>66013</zip>
+    <country>USA</country>
+  </address>
+</customer>
+<customer>
+  <code>smt109</code>
+  <type>P</type>
+  <name>Smith Industries</name>
+  <primaryContact>
+    <code>adc001</code>
+    <firstName> Shelly</firstName>
+    <lastName>Smith</lastName>
+    <address>
+      <street>450 Serra Mall</street>
+      <city>Stanford</city>
+      <state>CA</state>
+      <zip>94305</zip>
+      <country>USA</country>
+    </address>
+    <emails>
+      <string>ssmith15@stanford.edu</string>
+    </emails>
+  </primaryContact>
+  <address>
+    <street>1060 West Addison Street</street>
+    <city>Chicago</city>
+    <state>IL</state>
+    <zip>60613</zip>
+    <country>USA</country>
+  </address>
+</customer>
+<customer>
+  <code>tms421</code>
+  <type>B</type>
+  <name>Smith Foundation</name>
+  <primaryContact>
+    <code>adc001</code>
+    <firstName> Shelly</firstName>
+    <lastName>Smith</lastName>
+    <address>
+      <street>450 Serra Mall</street>
+      <city>Stanford</city>
+      <state>CA</state>
+      <zip>94305</zip>
+      <country>USA</country>
+    </address>
+    <emails>
+      <string>ssmith15@stanford.edu</string>
+    </emails>
+  </primaryContact>
+  <address>
+    <street>6200 Hermann Park Dr</street>
+    <city> Houston</city>
+    <state>TX</state>
+    <zip>77030</zip>
+    <country>USA</country>
+  </address>
+</customer>
+<customer>
+  <code>gre223</code>
+  <type>P</type>
+  <name>Grey Sloan</name>
+  <primaryContact>
+    <code>sko420</code>
+    <firstName> Cristina</firstName>
+    <lastName>Bailey</lastName>
+    <address>
+      <street>5301 Rockford Drive</street>
+      <city>Lincoln</city>
+      <state>NE</state>
+      <zip>68521</zip>
+      <country>USA</country>
+    </address>
+    <emails>
+      <string>crisbailey@gmail.com</string>
+    </emails>
+  </primaryContact>
+  <address>
+    <street>123 N 1st Street</street>
+    <city>Lincoln</city>
+    <state>NE</state>
+    <zip>68508</zip>
+    <country>USA</country>
+  </address>
+</customer>
+</customers>

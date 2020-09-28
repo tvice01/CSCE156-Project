@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<persons>
+<person>
+  <code>ddb007</code>
+  <firstName> Mary </firstName>
+  <lastName> Grey </lastName>
+  <Address>
+    <street>233 Bay State Road</street>
+    <city> Boston </city>
+    <state> MA </state>
+    <zip>02101</zip>
+    <country>USA</country>
+  </Address>
+  <emails>
+    <string>marygrey@gmail.com</string>
+    <string> mgrey1@yahoo.com </string>
+  </emails>
+</person>
+<person>
+  <code>adc001</code>
+  <firstName> Shelly</firstName>
+  <lastName>Smith</lastName>
+  <Address>
+    <street>450 Serra Mall</street>
+    <city> Standford</city>
+    <state>CA</state>
+    <zip>94305</zip>
+    <country>USA</country>
+  </Address>
+  <emails>
+    <string>ssmith15@stanford.edu</string>
+  </emails>
+</person>
+<person>
+  <code>cba321</code>
+  <firstName> Andrew </firstName>
+  <lastName> Rodgers</lastName>
+  <Address>
+    <street>1011 Jones Street</street>
+    <city> Omaha</city>
+    <state> NE</state>
+    <zip>68102</zip>
+    <country>USA</country>
+  </Address>
+  <emails>
+    <string>arodgers3@hotmail.com</string>
+  </emails>
+</person>
+<person>
+  <code>564hom</code>
+  <firstName> Alex </firstName>
+  <lastName> Richards</lastName>
+  <Address>
+    <street>5801 N 33rd Street</street>
+    <city>Lincoln</city>
+    <state>NE</state>
+    <zip>68504</zip>
+    <country>USA</country>
+  </Address>
+  <emails>
+    <string>alexrichards@gmail.com</string>
+  </emails>
+</person>
+<person>
+  <code>len890</code>
+  <firstName> Ava</firstName>
+  <lastName>Robbins</lastName>
+  <Address>
+    <street>16255 NE 36th Way</street>
+    <city>Redmond</city>
+    <state>WA</state>
+    <zip>98052</zip>
+    <country>USA</country>
+  </Address>
+  <emails>
+    <string>avarobbins@gmail.com</string>
+    <string>arobbins@yahoo.com</string>
+  </emails>
+</person>
+<person>
+  <code>lvz8f7</code>
+  <firstName> Skyler</firstName>
+  <lastName>Dang</lastName>
+  <Address>
+    <street>1920 Farnam Street</street>
+    <city>Omaha</city>
+    <state>NE</state>
+    <zip>68102</zip>
+    <country>USA</country>
+  </Address>
+  <emails>
+    <string>skylerdang@hotmail.com</string>
+  </emails>
+</person>
+<person>
+  <code>pol9t7</code>
+  <firstName> Abby</firstName>
+  <lastName> Olsen</lastName>
+  <Address>
+    <street>66 Perry Street</street>
+    <city>New York</city>
+    <state>NY</state>
+    <zip>10014</zip>
+    <country>USA</country>
+  </Address>
+  <emails>
+    <string></string>
+  </emails>
+</person>
+<person>
+  <code>sko420</code>
+  <firstName> Cristina</firstName>
+  <lastName>Bailey</lastName>
+  <Address>
+    <street>5301 Rockford Drive</street>
+    <city> Lincoln</city>
+    <state>NE</state>
+    <zip>68521</zip>
+    <country>USA</country>
+  </Address>
+  <emails>
+    <string>crisbailey@gmail.com</string>
+  </emails>
+</person>
+<person>
+  <code>987fyg</code>
+  <firstName> Derek</firstName>
+  <lastName>Bishop</lastName>
+  <Address>
+    <street>101 R Street</street>
+    <city> Sioux City</city>
+    <state> IA</state>
+    <zip> 51106</zip>
+    <country> USA</country>
+  </Address>
+  <emails>
+    <string>derekbishop@morningside.edu</string>
+  </emails>
+</person>
+<person>
+  <code>396fwb</code>
+  <firstName> Haley</firstName>
+  <lastName>James</lastName>
+  <Address>
+    <street>300 S Street</street>
+    <city> Wilmington</city>
+    <state> NC</state>
+    <zip> 28403</zip>
+    <country> USA</country>
+  </Address>
+  <emails>
+  <string>haleyjames@gmail.com</string>
+  </emails>
+</person>
+</persons>

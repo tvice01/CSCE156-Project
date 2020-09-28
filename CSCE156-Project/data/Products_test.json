@@ -1,0 +1,51 @@
+{
+"assets": [
+  {
+    "partsCost": 25,
+    "laborRate": 30,
+    "code": "poiu8yt",
+    "type": "F",
+    "label": "Oil Change"
+  },
+  {
+    "dailyCost": 75.00,
+    "deposit": 200,
+    "cleaningFee": 25.39,
+    "code": "zxc3c",
+    "type": "R",
+    "label": "Ford Taurus"
+  },
+  {
+    "partsCost": 200,
+    "laborRate": 50,
+    "code": "86sdf7",
+    "type": "F",
+    "label": "Windshield Replacement"
+  },
+  {
+    "costPerMile": 5.50,
+    "code": "39msn",
+    "type": "T",
+    "label": "Tow \u003e 20 Miles"
+  },
+  {
+    "cost": 1.75,
+    "code": "oasn02d",
+    "type": "C",
+    "label": "Coffee"
+  },
+  {
+    "dailyCost": 2500,
+    "deposit": 15000,
+    "cleaningFee": 100,
+    "code": "0sli7",
+    "type": "R",
+    "label": "Porsche 911"
+  },
+  {
+    "costPerMile": 4.50,
+    "code": "bz4y32",
+    "type": "T",
+    "label": "Tow \u003c 20 miles"
+  }
+]}

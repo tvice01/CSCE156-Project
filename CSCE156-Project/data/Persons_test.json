@@ -1,0 +1,155 @@
+{
+"persons": [
+  {
+    "code": "ddb007",
+    "firstName": " Mary",
+    "lastName": "Grey",
+    "Address": {
+      "street": "233 Bay State Road",
+      "city": "Boston",
+      "state": "MA",
+      "zip": "02101",
+      "country": "USA"
+    },
+    "emails": [
+      "marygrey@gmail.com",
+      "mgrey1@yahoo.com"
+    ]
+  },
+  {
+    "code": "adc001",
+    "firstName": " Shelly",
+    "lastName": "Smith",
+    "Address": {
+      "street": "450 Serra Mall",
+      "city": "Stanford",
+      "state": "CA",
+      "zip": "94305",
+      "country": "USA"
+    },
+    "emails": [
+      "ssmith@standford.edu"
+    ]
+  },
+  {
+    "code": "cba321",
+    "firstName": " Andrew",
+    "lastName": "Rodgers",
+    "Address": {
+      "street": "1011 Jones Street",
+      "city": "Omaha",
+      "state": "NE",
+      "zip": "68102",
+      "country": "USA"
+    },
+    "emails": [
+      "arodgers3@hotmail.com"
+    ]
+  },
+  {
+    "code": "564hom",
+    "firstName": " Alex",
+    "lastName": "Richards",
+    "Address": {
+      "street": "5801 N 33rd Street",
+      "city": "Lincoln",
+      "state": "NE",
+      "zip": "68504",
+      "country": "USA"
+    },
+    "emails": [
+      "alexrichards@gmail.com"
+    ]
+  },
+  {
+    "code": "len890",
+    "firstName": " Ava",
+    "lastName": "Robbins",
+    "Address": {
+      "street": "16255 NE 36th Way",
+      "city": "Redmond",
+      "state": "WA",
+      "zip": "98052",
+      "country": "USA"
+    },
+    "emails": [
+      "avarobbins@gmail.com",
+      "arobbins@yahoo.com"
+    ]
+  },
+  {
+    "code": "lyz8f7",
+    "firstName": " Skyler",
+    "lastName": "Dang",
+    "Address": {
+      "street": "1920 Farnam Street",
+      "city": "Omaha",
+      "state": "NE",
+      "zip": "68102",
+      "country": "USA"
+    },
+    "emails": [
+      "skylerdang@hotmail.com"
+    ]
+  },
+  {
+    "code": "pol9t7",
+    "firstName": " Abby",
+    "lastName": "Olsen",
+    "Address": {
+      "street": "66 Perry Street",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10014",
+      "country": "USA"
+    },
+    "emails": [
+      ""
+    ]
+  },
+  {
+    "code": "sko420",
+    "firstName": " Cristina",
+    "lastName": "Bailey",
+    "Address": {
+      "street": "1301 Rockford Drive",
+      "city": "Lincoln",
+      "state": "NE",
+      "zip": "68521",
+      "country": "USA"
+    },
+    "emails": [
+      "crisbailey@gmail.com"
+    ]
+  },
+  {
+    "code": "987fyg",
+    "firstName": " Derek",
+    "lastName": "Bishop",
+    "Address": {
+      "street": "101 R Street",
+      "city": "Sioux City",
+      "state": "IA",
+      "zip": "51106",
+      "country": "USA"
+    },
+    "emails": [
+      "derekbishop@morningside.edu"
+    ]
+  },
+  {
+    "code": "354fgb",
+    "firstName": " Haley",
+    "lastName": "James",
+    "Address": {
+      "street": "300 S Street",
+      "city": "Wilmington",
+      "state": "NC",
+      "zip": "28403",
+      "country": "USA"
+    },
+    "emails": [
+      "haleyjames@gmail.com"
+    ]
+  }
+]}
