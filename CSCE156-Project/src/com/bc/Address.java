@@ -1,5 +1,12 @@
 package com.bc;
 
+/*
+ * Date: 10/4/2020
+ * CSCE 156, Assignment 3
+ * @authors Treyvor Vice, Ann Le
+ * This is class is used to store addresses. Each Address contains a street, city, state, zip, and country.
+ */
+
 public class Address {
 
 	private String street;
@@ -25,7 +32,6 @@ public class Address {
 	}
 	
 	public Address(String street, String city, String state, String zip, String country) {
-		super();
 		this.street = street;
 		this.city = city;
 		this.state = state;

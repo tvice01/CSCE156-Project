@@ -1,5 +1,13 @@
 package com.bc;
 
+/*
+ * Date: 10/4/2020
+ * CSCE 156, Assignment 3
+ * @authors Treyvor Vice, Ann Le
+ * This class stores objects of the type Customer. Every Customer contains a code, type, name, primaryContact, 
+ * and an address.
+ */
+
 public class Customer {
 	
 	private String code;
@@ -25,7 +33,6 @@ public class Customer {
 	}
 	
 	public Customer(String code, String type, String name, Person primaryContact, Address address) {
-		super();
 		this.code = code;
 		this.type = type;
 		this.name = name;

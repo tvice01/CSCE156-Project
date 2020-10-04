@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class InvoiceParser {
 	
-	public static ArrayList<Invoice> invoiceParser(ArrayList<Person> personList,
+	public static ArrayList<Invoice> parseInvoiceList(ArrayList<Person> personList,
 			ArrayList<Customer> customerList, ArrayList<Products> productsList) {
 		
 		//Open the file for scanning and throw an exception if not found
@@ -91,7 +91,7 @@ public class InvoiceParser {
 		ArrayList<Customer> customerList = Parsers.parseCustomerList(personList);
 		ArrayList<Products> productsList = Parsers.parseProductsList();
 		
-		ArrayList<Invoice> invoiceList = invoiceParser(personList, customerList, productsList);
+		ArrayList<Invoice> invoiceList = parseInvoiceList(personList, customerList, productsList);
 		
 		for (Invoice p : invoiceList) {
 			System.out.println("\n" + p.getInvoiceCode());
