@@ -19,12 +19,6 @@ public class ConcessionPurchase extends Purchase {
 	public String getAssocRepair() {
 		return this.assocRepair;
 	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	public void setAssocRepair(String assocRepair) {
-		this.assocRepair = assocRepair;
-	}
 
 	public ConcessionPurchase(Products product, int quantity, String assocRepair) {
 		super(product);
@@ -32,4 +26,16 @@ public class ConcessionPurchase extends Purchase {
 		this.assocRepair = assocRepair;
 	}
 
+	public boolean getAssocRepairDiscount() {
+		boolean discount = false;
+		if (this.assocRepair.length() > 0) {
+			discount = true;
+		}
+		return discount;
+	}
+	
+	protected float getPurchaseCost() {
+		float subtotal = ((Concession)this.getProduct()).getCost();
+		return subtotal;
+	}
 }

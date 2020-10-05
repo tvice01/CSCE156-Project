@@ -25,7 +25,7 @@ public class Customer {
 	public String getName() {
 		return name;
 	}
-	public Person getContact() {
+	public Person getPrimaryContact() {
 		return primaryContact;
 	}
 	public Address getAddress() {

@@ -8,18 +8,17 @@ package com.bc;
  * ConcessionPurchase, and TowingPurchase classes. Every Purchase contains a product.
  */
 
-public class Purchase {
+public abstract class Purchase {
 	
 	private Products product;
 
 	public Products getProduct() {
 		return this.product;
 	}
-	public void setProduct(Products product) {
-		this.product = product;
-	}
 	
 	public Purchase(Products product) {
 		this.product = product;
 	}
+	
+	protected abstract float getPurchaseCost();
 }

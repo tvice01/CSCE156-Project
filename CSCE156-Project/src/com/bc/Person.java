@@ -40,4 +40,23 @@ public class Person {
 		this.emails = emails;
 	}
 	
+	public String getLastFirstName() {
+		String name = this.lastName + "," + this.firstName;
+		return name;
+	}
+	
+	public String printEmails () {
+		String emails = "";
+		int check = 0;
+		for (String s : this.emails) {
+			if (check == 0) {
+				emails += s;
+			}
+			else {
+				emails += ", " + s;
+			}
+			check++;
+		}
+		return emails;
+	}
 }

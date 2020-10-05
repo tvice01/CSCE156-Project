@@ -202,10 +202,25 @@ public class Parsers {
 			String line = s.nextLine();
 			if (!line.trim().isEmpty()) {
 				Invoice invoice = null;
+				Person person = null;
+				Customer customer = null;
 				String tokens[] = line.split(";");
 				String invoiceCode = tokens[0];
-				String personCode = tokens[1];
-				String customerCode = tokens[2];
+				
+				// Iterate through personList to find a Person that matches tokens[1]
+				for (Person p : personList) {
+					if (tokens[1].equals(p.getCode())) {
+						person = p;
+					}
+				}
+				
+				// Iterate through customerList to find a Customer that matches tokens[2]
+				for (Customer c : customerList) {
+					if (tokens[2].equals(c.getCode())) {
+						customer = c;
+					}
+				}
+				
 				String purchTokens[] = tokens[3].split(",");
 				
 				//Parse entries of prodTokens[] as objects in the Purchase class and adds them to an array of Purchases
@@ -218,11 +233,11 @@ public class Parsers {
 					for (Products p : productsList) {
 						if (purchSubTokens[0].equals(p.getCode())) {
 							Purchase e = null;
-							if (p.getType().equals("F")) {
+							if (p.getType().equals("R")) {
 								int daysRented = Integer.parseInt(purchSubTokens[1]);
 								e = new RentalPurchase(p, daysRented);
 							}
-							else if (p.getType().equals("R")) {
+							else if (p.getType().equals("F")) {
 								float hoursWorked = Float.parseFloat(purchSubTokens[1]);
 								e = new RepairPurchase(p, hoursWorked);
 							}
@@ -244,7 +259,7 @@ public class Parsers {
 					}
 				}
 				
-				invoice = new Invoice(invoiceCode, personCode, customerCode, purchaseList);
+				invoice = new Invoice(invoiceCode, person, customer, purchaseList);
 				invoiceList.add(invoice);
 			}
 		}

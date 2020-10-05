@@ -15,13 +15,21 @@ public class RentalPurchase extends Purchase {
 	public int getDaysRented() {
 		return this.daysRented;
 	}
-	public void setDaysRented(int daysRented) {
-		this.daysRented = daysRented;
-	}
 
 	public RentalPurchase(Products product, int daysRented) {
 		super(product);
 		this.daysRented = daysRented;
+	}
+
+	protected float getPurchaseCost() {
+		float subtotal = 0;
+		
+		float daysCost = this.daysRented * ((Rental)this.getProduct()).getDailyCost();
+		float deposit = ((Rental)this.getProduct()).getDeposit();
+		float cleaningFee = ((Rental)this.getProduct()).getCleaningFee();
+		
+		subtotal = daysCost + deposit + cleaningFee;
+		return subtotal;
 	}
 	
 	

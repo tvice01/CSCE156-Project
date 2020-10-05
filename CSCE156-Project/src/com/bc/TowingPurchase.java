@@ -15,13 +15,14 @@ public class TowingPurchase extends Purchase {
 	public float getMilesTowed() {
 		return this.milesTowed;
 	}
-	public void setMilesTowed(float milesTowed) {
-		this.milesTowed = milesTowed;
-	}
 
 	public TowingPurchase(Products product, float milesTowed) {
 		super(product);
 		this.milesTowed = milesTowed;
 	}
 
+	protected float getPurchaseCost() {
+		float subtotal = this.milesTowed * ((Towing)this.getProduct()).getCostPerMile();
+		return subtotal;
+	}
 }
