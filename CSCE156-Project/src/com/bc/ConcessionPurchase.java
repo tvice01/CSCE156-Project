@@ -35,7 +35,7 @@ public class ConcessionPurchase extends Purchase {
 	}
 	
 	protected float getPurchaseCost() {
-		float subtotal = ((Concession)this.getProduct()).getCost();
+		float subtotal = ((Concession)this.getProduct()).getCost() * this.quantity;
 		return subtotal;
 	}
 }

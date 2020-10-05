@@ -39,10 +39,10 @@ public class InvoiceReport {
 			taxesTotals += taxes;
 			discountTotals += discount;
 			totalTotals += total;
-			System.out.printf(" $%10.2f $%10.2f $%10.2f $%10.2f $%10.2f\n", subtotal, discount, fees, taxes, total);
+			System.out.printf(" $%10.2f $%10.2f $%10.2f $%10.2f $%10.2f\n", subtotal, -discount, fees, taxes, total);
 		}
 		System.out.println("==================================================================================================================");
-		System.out.printf("%-52s $%10.2f $%10.2f $%10.2f $%10.2f $%10.2f\n\n\n\n", "TOTALS", subtotalTotals, feesTotals, taxesTotals, discountTotals, totalTotals);
+		System.out.printf("%-52s $%10.2f $%10.2f $%10.2f $%10.2f $%10.2f\n\n\n\n", "TOTALS", subtotalTotals, -discountTotals, feesTotals, taxesTotals, totalTotals);
 
 
 		// Output detailed reports for each Invoice entry
@@ -139,14 +139,14 @@ public class InvoiceReport {
 				float purchaseTotal = p.getPurchaseCost() - purchaseDiscount + purchaseTax;
 				invTotal += purchaseTotal;
 				
-				System.out.printf("  %-10s %-60s $%10.2f $%10.2f $%10.2f $%10.2f\n", code, description1, p.getPurchaseCost(), purchaseDiscount, purchaseTax, purchaseTotal);
+				System.out.printf("  %-10s %-60s $%10.2f $%10.2f $%10.2f $%10.2f\n", code, description1, p.getPurchaseCost(), -purchaseDiscount, purchaseTax, purchaseTotal);
 				if (p.getProduct().getType().equals("F") || p.getProduct().getType().equals("R")) {
 					System.out.printf("             %s\n", description2);
 				}
 				
 			}
 			System.out.println("===========================================================================================================================");
-			System.out.printf("%-73s $%10.2f $%10.2f $%10.2f $%10.2f\n", "ITEM TOTALS", inv.calculateSubTotal(), inv.calculatePreTaxDiscounts(), inv.calculateTax(), invTotal);
+			System.out.printf("%-73s $%10.2f $%10.2f $%10.2f $%10.2f\n", "ITEM TOTALS", inv.calculateSubTotal(), -inv.calculatePreTaxDiscounts(), inv.calculateTax(), invTotal);
 			if (inv.getCustomer().getType().equals("B")) {
 				System.out.printf("%-109s $%10.2f\n", "BUSINESS ACCOUNT FEE", 75.50);
 			}
