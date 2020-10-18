@@ -37,7 +37,7 @@ create table Address (
     country_id int not null,
     foreign key (state_id) references State(state_id),
     foreign key (country_id) references Country(country_id),
-    constraint Unique_Address unique (street, city, zip, state_id)
+    constraint Unique_Address unique (street, city, zip, state_id) -- Ensures no duplicate addresses
 );
 
 create table Person (
@@ -56,7 +56,7 @@ create table Customer (
   customerType varchar(10) not null, -- Indicates account type: business = B, personal = P
   address_id int not null,
   foreign key (address_id) references Address(address_id),
-  constraint c_type check (customerType = "B" or customerType = "P")
+  constraint Customer_type check (customerType = "B" or customerType = "P") -- Ensures customers are only Business or Personal accounts
 );
 
 -- PersonCustomer associates a customer account with its primary contact (a person)
@@ -89,6 +89,7 @@ create table Products (
   productCode varchar(45) not null unique,
   productType varchar(10) not null, -- rental (R), repair (F), concession (C), towing (T)
   label varchar(100) not null,
+  -- These 7 fields are associated with a specific type of product. The field is left null if the product does not use it.
   dailyCost float, -- Used with: rental (R)
   deposit float, -- Used with: rental (R)
   cleaningFee float, -- Used with: rental (R)
@@ -96,7 +97,8 @@ create table Products (
   hourlyLaborCost float, -- Used with: repair (F)
   unitCost float, -- Used with: concession (C)
   costPerMile float, -- Used with: towing (T)
-  constraint p_type check (productType in ("R", "F", "C", "T"))
+  constraint Product_type check (productType in ("R", "F", "C", "T")), -- Ensures products are only of type R, F, C, or T
+  constraint Unique_product unique (productType, label, dailyCost, deposit, cleaningFee, partsCost, hourlyLaborCost, unitCost, costPerMile) -- Ensures no duplicate products
 );
 
 -- Purchase table associates each purchase of a Product with the specified Invoice
@@ -104,15 +106,16 @@ create table Purchase (
   purchase_id int not null unique primary key auto_increment,
   invoice_id int not null,
   product_id int not null,
+  -- These 5 fields are associated with a specific type of product. The field is left null if the product does not use it.
   daysRented float, -- Used with: rental (R)
-  hoursWorked FLOAT, -- Used with: repair (F)
-  quantity INT, -- Used with: concession (C)
-  associatedRepair INT, -- Used with: concession (C), (only if another Product type is associated with same invoice_id)
-  milesTowed FLOAT, -- Used with: towing (T)
+  hoursWorked float, -- Used with: repair (F)
+  quantity int, -- Used with: concession (C)
+  associatedRepair int, -- Used with: concession (C), (only if a repair is associated with same invoice_id)
+  milesTowed float, -- Used with: towing (T)
   foreign key (invoice_id) references Invoice(invoice_id),
   foreign key (product_id) references Products(product_id),
   foreign key (associatedRepair) references Products(product_id),
-  constraint Unique_Purchase unique (invoice_id, product_id, daysRented, hoursWorked, quantity, associatedRepair, milesTowed)
+  constraint Unique_Purchase unique (invoice_id, product_id, daysRented, hoursWorked, quantity, associatedRepair, milesTowed) -- Ensures no duplicate purchases on an invoice
 );
 
 -- Populate the tables with some data
