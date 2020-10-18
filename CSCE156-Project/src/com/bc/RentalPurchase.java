@@ -28,7 +28,7 @@ public class RentalPurchase extends Purchase {
 		float deposit = ((Rental)this.getProduct()).getDeposit();
 		float cleaningFee = ((Rental)this.getProduct()).getCleaningFee();
 		
-		subtotal = daysCost + deposit + cleaningFee;
+		subtotal = daysCost - deposit + cleaningFee;
 		return subtotal;
 	}
 	

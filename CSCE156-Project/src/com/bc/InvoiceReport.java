@@ -151,7 +151,7 @@ public class InvoiceReport {
 				System.out.printf("%-109s $%10.2f\n", "BUSINESS ACCOUNT FEE", 75.50);
 			}
 			if (inv.calculatePostTaxDiscounts()>0) {
-				System.out.printf("%-109s $%10.2f", "LOYAL CUSTOMER DISCOUNT (5% OFF)\n", -inv.calculatePostTaxDiscounts());
+				System.out.printf("%-109s $%10.2f\n", "LOYAL CUSTOMER DISCOUNT (5% OFF)", -inv.calculatePostTaxDiscounts());
 			}
 			System.out.printf("%-109s $%10.2f\n", "GRAND TOTAL", inv.calculateTotalCost());
 			

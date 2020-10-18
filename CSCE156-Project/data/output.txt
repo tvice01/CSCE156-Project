@@ -1,0 +1,120 @@
+Executive Summary Report:
+=========================
+Code       Owner                Customer Account        Subtotal   Discounts        Fees       Taxes       Total
+-----------------------------------------------------------------------------------------------------------------
+INV001     Bishop, Derek        State of Nebraska    $    146.75 $     -0.00 $     75.50 $      6.24 $    228.49
+INV002     Richards, Alex       Smith Industries     $  50105.25 $     -0.00 $      0.00 $   4008.42 $  54113.67
+INV003     Bishop, Derek        Grey Sloan           $    813.75 $    -27.00 $      0.00 $     62.94 $    849.69
+INV004     Grey, Mary           Demolition Derby     $      3.50 $     -0.00 $     75.50 $      0.15 $     79.15
+==================================================================================================================
+TOTALS                                               $  51069.25 $    -27.00 $    151.00 $   4077.75 $  55271.00
+
+
+
+Invoice Details:
+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+Invoice INV001
+------------------------------------------
+Owner:
+	Bishop, Derek
+	[derekbishop@morningside.edu]
+	101 R Street
+	Sioux City, IA, USA51106
+Customer:
+	State of Nebraska (Business Account)
+	100 W Fake Street
+	Albaquerque, NM, USA 80706
+Products:
+  Code       Description                                                     Subtotal   Discount        Tax      Total
+  ------------------------------------------------------------------------------------------------------------------------
+  poiu8yt    Oil Change (4.0 hour(s) of labor @ $30.0/hour)               $    145.00 $     -0.00 $      6.16 $    151.16
+             (+ $25.0for parts)
+  oasn02d    Coffee (1 unit(s) @ $1.75/unit)                              $      1.75 $     -0.00 $      0.07 $      1.82
+===========================================================================================================================
+ITEM TOTALS                                                               $    146.75 $     -0.00 $      6.24 $    152.99
+BUSINESS ACCOUNT FEE                                                                                          $     75.50
+GRAND TOTAL                                                                                                   $    228.49
+
+
+		THANK YOU FOR DOING BUSINESS WITH US!
+
+
+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+Invoice INV002
+------------------------------------------
+Owner:
+	Richards, Alex
+	[alexrichards@gmail.com]
+	5801 N 33rd Street
+	Lincoln, NE, USA68504
+Customer:
+	Smith Industries (Personal Account)
+	1060 West Addison Street
+	Chicago, IL, USA 60613
+Products:
+  Code       Description                                                     Subtotal   Discount        Tax      Total
+  ------------------------------------------------------------------------------------------------------------------------
+  0sli7      Porsche 911 (14 day(s) @ $2500.0/day)                        $  50100.00 $     -0.00 $   4008.00 $  54108.00
+             (+ $100.0 cleaning fee, -$15000.0 deposit refund)
+  oasn02d    Coffee (3 unit(s) @ $1.75/unit)                              $      5.25 $     -0.00 $      0.42 $      5.67
+===========================================================================================================================
+ITEM TOTALS                                                               $  50105.25 $     -0.00 $   4008.42 $  54113.67
+GRAND TOTAL                                                                                                   $  54113.67
+
+
+		THANK YOU FOR DOING BUSINESS WITH US!
+
+
+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+Invoice INV003
+------------------------------------------
+Owner:
+	Bishop, Derek
+	[derekbishop@morningside.edu]
+	101 R Street
+	Sioux City, IA, USA51106
+Customer:
+	Grey Sloan (Personal Account)
+	123 N 1st Street
+	Lincoln, NE, USA 68508
+Products:
+  Code       Description                                                     Subtotal   Discount        Tax      Total
+  ------------------------------------------------------------------------------------------------------------------------
+  86sdf7     Windshield Replacement (1.0 hour(s) of labor @ $50.0/hour)   $    250.00 $     -0.00 $     20.00 $    270.00
+             (+ $200.0for parts)
+  bz4y32     Tow < 20 miles (6.0 mile(s) @ $4.5/mile)                     $     27.00 $    -27.00 $      0.00 $      0.00
+  oasn02d    Coffee (1 unit(s) @ $1.75/unit)                              $      1.75 $     -0.00 $      0.14 $      1.89
+  zxc3c      Ford Taurus (4 day(s) @ $75.0/day)                           $    535.00 $     -0.00 $     42.80 $    577.80
+             (+ $35.0 cleaning fee, -$200.0 deposit refund)
+===========================================================================================================================
+ITEM TOTALS                                                               $    813.75 $    -27.00 $     62.94 $    849.69
+GRAND TOTAL                                                                                                   $    849.69
+
+
+		THANK YOU FOR DOING BUSINESS WITH US!
+
+
+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+Invoice INV004
+------------------------------------------
+Owner:
+	Grey, Mary
+	[marygrey@gmail.com, mgrey1@yahoo.com]
+	233 Bay State Road
+	Boston, MA, USA02101
+Customer:
+	Demolition Derby (Business Account)
+	126 Roosevelt Ave
+	Overland Park, KS, USA 66013
+Products:
+  Code       Description                                                     Subtotal   Discount        Tax      Total
+  ------------------------------------------------------------------------------------------------------------------------
+  oasn02d    Coffee (2 unit(s) @ $1.75/unit)                              $      3.50 $     -0.00 $      0.15 $      3.65
+===========================================================================================================================
+ITEM TOTALS                                                               $      3.50 $     -0.00 $      0.15 $      3.65
+BUSINESS ACCOUNT FEE                                                                                          $     75.50
+GRAND TOTAL                                                                                                   $     79.15
+
+
+		THANK YOU FOR DOING BUSINESS WITH US!
+		
