@@ -7,7 +7,7 @@ start transaction;
 
 -- Delete tables if they already exist
 drop table if exists Purchase;
-drop table if exists Products;
+drop table if exists Product;
 drop table if exists Invoice;
 drop table if exists Email;
 drop table if exists PersonCustomer;
@@ -84,7 +84,7 @@ create table Invoice (
   foreign key (customer_id) references Customer(customer_id)
 );
 
-create table Products (
+create table Product (
   product_id int not null unique primary key auto_increment,
   productCode varchar(45) not null unique,
   productType varchar(10) not null, -- rental (R), repair (F), concession (C), towing (T)
@@ -113,8 +113,8 @@ create table Purchase (
   associatedRepair int, -- Used with: concession (C), (only if a repair is associated with same invoice_id)
   milesTowed float, -- Used with: towing (T)
   foreign key (invoice_id) references Invoice(invoice_id),
-  foreign key (product_id) references Products(product_id),
-  foreign key (associatedRepair) references Products(product_id),
+  foreign key (product_id) references Product(product_id),
+  foreign key (associatedRepair) references Product(product_id),
   constraint Unique_Purchase unique (invoice_id, product_id, daysRented, hoursWorked, quantity, associatedRepair, milesTowed) -- Ensures no duplicate purchases on an invoice
 );
 
@@ -225,48 +225,48 @@ insert into Invoice (invoiceCode, person_id, customer_id) values
     ("INV007", (select person_id from Person where personCode = "564hom"), (select customer_id from Customer where customerCode = "smt109")),
     ("INV008", (select person_id from Person where personCode = "396fwb"), (select customer_id from Customer where customerCode = "smt109"));
 
--- Insert all Rental products into Products table
-insert into Products (productCode, productType, label, dailyCost, deposit, cleaningFee) values
+-- Insert all Rental products into Product table
+insert into Product (productCode, productType, label, dailyCost, deposit, cleaningFee) values
 	("zxc3c", "R", "Ford Taurus", 75.0, 200.0, 35.0), ("0sli7", "R", "Porsche 911", 2500.0, 15000.0, 100.0);
 
--- Insert all Repair products into Products table
-insert into Products (productCode, productType, label, partsCost, hourlyLaborCost) values
+-- Insert all Repair products into Product table
+insert into Product (productCode, productType, label, partsCost, hourlyLaborCost) values
 	("poiu8yt", "F", "Oil Change", 25.0, 30.0), ("86sdf7", "F", "Windshield Replacement", 200.0, 50.0);
     
--- Insert all Concession products into Products table
-insert into Products (productCode, productType, label, unitCost) values 
+-- Insert all Concession products into Product table
+insert into Product (productCode, productType, label, unitCost) values 
 	("oasn02d", "C", "Coffee", 1.75), ("asd93d", "C", "Martini", 5.50);
     
--- Insert all Towing products into Products table
-insert into Products (productCode, productType, label, costPerMile) values
+-- Insert all Towing products into Product table
+insert into Product (productCode, productType, label, costPerMile) values
 	("39msn", "T", "Tow > 20 miles", 5.5), ("bz4y32", "T", "Tow < 20 miles", 4.5);
 
 -- Insert all Rental purchases into Purchase table
 insert into Purchase (invoice_id, product_id, daysRented) values
-	((select invoice_id from Invoice where invoiceCode = "INV002"), (select product_id from Products where productCode = "0sli7"), 14),
-    ((select invoice_id from Invoice where invoiceCode = "INV003"), (select product_id from Products where productCode = "zxc3c"), 4),
-    ((select invoice_id from Invoice where invoiceCode = "INV005"), (select product_id from Products where productCode = "zxc3c"), 6),
-    ((select invoice_id from Invoice where invoiceCode = "INV005"), (select product_id from Products where productCode = "0sli7"), 6);
+	((select invoice_id from Invoice where invoiceCode = "INV002"), (select product_id from Product where productCode = "0sli7"), 14),
+    ((select invoice_id from Invoice where invoiceCode = "INV003"), (select product_id from Product where productCode = "zxc3c"), 4),
+    ((select invoice_id from Invoice where invoiceCode = "INV005"), (select product_id from Product where productCode = "zxc3c"), 6),
+    ((select invoice_id from Invoice where invoiceCode = "INV005"), (select product_id from Product where productCode = "0sli7"), 6);
     
 -- Insert all Repair puchases into Purchase table
 insert into Purchase (invoice_id, product_id, hoursWorked) values 
-	((select invoice_id from Invoice where invoiceCode = "INV001"), (select product_id from Products where productCode = "poiu8yt"), 4.0),
-    ((select invoice_id from Invoice where invoiceCode = "INV003"), (select product_id from Products where productCode = "86sdf7"), 1.0),
-    ((select invoice_id from Invoice where invoiceCode = "INV006"), (select product_id from Products where productCode = "86sdf7"), 1.5),
-    ((select invoice_id from Invoice where invoiceCode = "INV006"), (select product_id from Products where productCode = "poiu8yt"), 0.5);
+	((select invoice_id from Invoice where invoiceCode = "INV001"), (select product_id from Product where productCode = "poiu8yt"), 4.0),
+    ((select invoice_id from Invoice where invoiceCode = "INV003"), (select product_id from Product where productCode = "86sdf7"), 1.0),
+    ((select invoice_id from Invoice where invoiceCode = "INV006"), (select product_id from Product where productCode = "86sdf7"), 1.5),
+    ((select invoice_id from Invoice where invoiceCode = "INV006"), (select product_id from Product where productCode = "poiu8yt"), 0.5);
     
 -- Insert all Concession purchases into Purchase table
 insert into Purchase (invoice_id, product_id, quantity, associatedRepair) values 
-	((select invoice_id from Invoice where invoiceCode = "INV001"), (select product_id from Products where productCode = "oasn02d"), 1, (select product_id from Products where productCode = "poiu8yt")),
-    ((select invoice_id from Invoice where invoiceCode = "INV002"), (select product_id from Products where productCode = "oasn02d"), 3, null),
-    ((select invoice_id from Invoice where invoiceCode = "INV003"), (select product_id from Products where productCode = "oasn02d"), 1, (select product_id from Products where productCode = "86sdf7")),
-    ((select invoice_id from Invoice where invoiceCode = "INV004"), (select product_id from Products where productCode = "oasn02d"), 2, null),
-    ((select invoice_id from Invoice where invoiceCode = "INV002"), (select product_id from Products where productCode = "asd93d"), 2, null);
+	((select invoice_id from Invoice where invoiceCode = "INV001"), (select product_id from Product where productCode = "oasn02d"), 1, (select product_id from Product where productCode = "poiu8yt")),
+    ((select invoice_id from Invoice where invoiceCode = "INV002"), (select product_id from Product where productCode = "oasn02d"), 3, null),
+    ((select invoice_id from Invoice where invoiceCode = "INV003"), (select product_id from Product where productCode = "oasn02d"), 1, (select product_id from Product where productCode = "86sdf7")),
+    ((select invoice_id from Invoice where invoiceCode = "INV004"), (select product_id from Product where productCode = "oasn02d"), 2, null),
+    ((select invoice_id from Invoice where invoiceCode = "INV002"), (select product_id from Product where productCode = "asd93d"), 2, null);
     
 -- Insert all Towing purchases into Purchase table
 insert into Purchase (invoice_id, product_id, milesTowed) values 
-	((select invoice_id from Invoice where invoiceCode = "INV003"), (select product_id from Products where productCode = "bz4y32"), 6.0),
-    ((select invoice_id from Invoice where invoiceCode = "INV007"), (select product_id from Products where productCode = "39msn"), 21.5),
-    ((select invoice_id from Invoice where invoiceCode = "INV008"), (select product_id from Products where productCode = "39msn"), 35.2);
+	((select invoice_id from Invoice where invoiceCode = "INV003"), (select product_id from Product where productCode = "bz4y32"), 6.0),
+    ((select invoice_id from Invoice where invoiceCode = "INV007"), (select product_id from Product where productCode = "39msn"), 21.5),
+    ((select invoice_id from Invoice where invoiceCode = "INV008"), (select product_id from Product where productCode = "39msn"), 35.2);
     
 commit;
