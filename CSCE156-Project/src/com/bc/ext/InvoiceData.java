@@ -1,9 +1,11 @@
 package com.bc.ext;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
  /* DO NOT change or remove the import statements beneath this.
@@ -15,6 +17,9 @@ import com.bc.model.Concession;
 import com.bc.model.Invoice;
 import com.bc.model.Customer;
 import com.bc.model.Towing;
+
+import unl.cse.albums.DatabaseInfo;
+
 import com.bc.model.Person;
 import com.bc.model.Product;
 import com.bc.model.Rental;
@@ -96,7 +101,6 @@ public class InvoiceData {
 	public static void removeAllProducts() {
 		/* TODO*/
 		
-		
 	}
 
 	/**
@@ -107,7 +111,49 @@ public class InvoiceData {
 	 * @param unitCost
 	 */
 	public static void addConcession(String productCode, String productLabel, double unitCost) {
-		/* TODO*/
+		//A method that adds a concession product to the database
+		
+		//Check whether String arguments are empty, throw exception if so
+		try {
+			if (productCode==null || productCode.trim().isEmpty() || productLabel==null || productLabel.trim().isEmpty()) {
+				throw new Exception();
+			}
+		} catch (Exception e) {
+			System.out.println("RuntimeException: Missing values in one or more field(s)");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
+		
+		// Check if a product with this productCode already exists (using the getProductID method)
+		int productID = getProductID(conn, productCode);
+		if (productID != 0) {
+			// If the record is already being used, exit the function and do not insert it again
+			return;
+		}
+		
+		// Create a concession product using the given arguments as appropriate fields
+		String query = "INSERT INTO Product (productCode, productType, label, unitCost) " +
+					   "VALUES (?, \"C\", ?, ?)";
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, productCode);
+			ps.setString(2, productLabel);
+			ps.setFloat(3, (float)unitCost);
+			ps.executeUpdate();
+			
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: Couldn't create new concession");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
@@ -119,7 +165,50 @@ public class InvoiceData {
 	 * @param laborRate
 	 */
 	public static void addRepair(String productCode, String productLabel, double partsCost, double laborRate) {
-		/* TODO*/
+		//A method that adds a repair product to the database
+		
+		//Check whether String arguments are empty, throw exception if so
+		try {
+			if (productCode==null || productCode.trim().isEmpty() || productLabel==null || productLabel.trim().isEmpty()) {
+				throw new Exception();
+			}
+		} catch (Exception e) {
+			System.out.println("RuntimeException: Missing values in one or more field(s)");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
+		
+		// Check if a product with this productCode already exists (using the getProductID method)
+		int productID = getProductID(conn, productCode);
+		if (productID != 0) {
+			// If the record is already being used, exit the function and do not insert it again
+			return;
+		}
+		
+		// Create a repair product using the given arguments as appropriate fields
+		String query = "INSERT INTO Product (productCode, productType, label, partsCost, hourlyLaborCost) " +
+					   "VALUES (?, \"F\", ?, ?, ?)";
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, productCode);
+			ps.setString(2, productLabel);
+			ps.setFloat(3, (float)partsCost);
+			ps.setFloat(4, (float)laborRate);
+			ps.executeUpdate();
+			
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: Couldn't create new repair");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
@@ -130,7 +219,49 @@ public class InvoiceData {
 	 * @param costPerMile
 	 */
 	public static void addTowing(String productCode, String productLabel, double costPerMile) {
-        /* TODO*/
+		//A method that adds a towing product to the database
+		
+		//Check whether String arguments are empty, throw exception if so
+		try {
+			if (productCode==null || productCode.trim().isEmpty() || productLabel==null || productLabel.trim().isEmpty()) {
+				throw new Exception();
+			}
+		} catch (Exception e) {
+			System.out.println("RuntimeException: Missing values in one or more field(s)");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
+		
+		// Check if a product with this productCode already exists (using the getProductID method)
+		int productID = getProductID(conn, productCode);
+		if (productID != 0) {
+			// If the record is already being used, exit the function and do not insert it again
+			return;
+		}
+		
+		// Create a towing product using the given arguments as appropriate fields
+		String query = "INSERT INTO Product (productCode, productType, label, costPerMile) " +
+					   "VALUES (?, \"T\", ?, ?)";
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, productCode);
+			ps.setString(2, productLabel);
+			ps.setFloat(3, (float)costPerMile);
+			ps.executeUpdate();
+			
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: Couldn't create new repair");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
@@ -143,7 +274,51 @@ public class InvoiceData {
 	 * @param cleaningFee
 	 */
 	public static void addRental(String productCode, String productLabel, double dailyCost, double deposit, double cleaningFee) {
-        /* TODO*/
+        //A method that adds a rental product to the database
+		
+		//Check whether String arguments are empty, throw exception if so
+		try {
+			if (productCode==null || productCode.trim().isEmpty() || productLabel==null || productLabel.trim().isEmpty()) {
+				throw new Exception();
+			}
+		} catch (Exception e) {
+			System.out.println("RuntimeException: Missing values in one or more field(s)");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
+		
+		// Check if a product with this productCode already exists (using the getProductID method)
+		int productID = getProductID(conn, productCode);
+		if (productID != 0) {
+			// If the record is already being used, exit the function and do not insert it again
+			return;
+		}
+		
+		// Create a rental product using the given arguments as appropriate fields
+		String query = "INSERT INTO Product (productCode, productType, label, dailyCost, deposit, cleaningFee) " +
+					   "VALUES (?, \"R\", ?, ?, ?, ?)";
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, productCode);
+			ps.setString(2, productLabel);
+			ps.setFloat(3, (float)dailyCost);
+			ps.setFloat(4, (float)deposit);
+			ps.setFloat(5, (float)cleaningFee);
+			ps.executeUpdate();
+			
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: Couldn't create new repair");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
@@ -218,5 +393,31 @@ public class InvoiceData {
     	/* TODO*/
     }
 
-   
+    public static int getProductID(Connection conn, String productCode) {
+    	// A method to return a product_id for a specific productCode if it exists in the connected database
+    	// and return 0 if it does not yet exist
+    	
+    	int productID = 0;
+    	
+    	String query = "SELECT product_id FROM Product WHERE productCode = ?";
+		
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+    	
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, productCode);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				productID = rs.getInt("product_id");
+			}
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: could not search for productCode");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+		return productID;
+	}
 }
