@@ -99,8 +99,13 @@ public class InvoiceData {
 	 * 6. Removes all product records from the database
 	 */
 	public static void removeAllProducts() {
-		/* TODO*/
+		// A method that removes all members of the Product table (NOTE: does not drop the table, only empties it)
+				
+		// First, remove all records in Purchase table (b/c they reference Product records as foreign keys)
+		emptyTable("Purchase");
 		
+		// Now, remove all records from Product table
+		emptyTable("Product");
 	}
 
 	/**
@@ -123,16 +128,16 @@ public class InvoiceData {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-
-		// Connect to database using connectToDatabase method in DatabaseInfo.java
-		Connection conn = DatabaseInfo.connectToDatabase();
 		
 		// Check if a product with this productCode already exists (using the getProductID method)
-		int productID = getProductID(conn, productCode);
+		int productID = getProductID(productCode);
 		if (productID != 0) {
 			// If the record is already being used, exit the function and do not insert it again
 			return;
 		}
+		
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
 		
 		// Create a concession product using the given arguments as appropriate fields
 		String query = "INSERT INTO Product (productCode, productType, label, unitCost) " +
@@ -146,8 +151,7 @@ public class InvoiceData {
 			ps.setString(1, productCode);
 			ps.setString(2, productLabel);
 			ps.setFloat(3, (float)unitCost);
-			ps.executeUpdate();
-			
+			rs = ps.executeQuery();
 			rs.close();
 		} catch (SQLException e) {
 			System.out.println("SQLException: Couldn't create new concession");
@@ -177,16 +181,16 @@ public class InvoiceData {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-
-		// Connect to database using connectToDatabase method in DatabaseInfo.java
-		Connection conn = DatabaseInfo.connectToDatabase();
 		
 		// Check if a product with this productCode already exists (using the getProductID method)
-		int productID = getProductID(conn, productCode);
+		int productID = getProductID(productCode);
 		if (productID != 0) {
 			// If the record is already being used, exit the function and do not insert it again
 			return;
 		}
+
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
 		
 		// Create a repair product using the given arguments as appropriate fields
 		String query = "INSERT INTO Product (productCode, productType, label, partsCost, hourlyLaborCost) " +
@@ -201,8 +205,7 @@ public class InvoiceData {
 			ps.setString(2, productLabel);
 			ps.setFloat(3, (float)partsCost);
 			ps.setFloat(4, (float)laborRate);
-			ps.executeUpdate();
-			
+			rs = ps.executeQuery();
 			rs.close();
 		} catch (SQLException e) {
 			System.out.println("SQLException: Couldn't create new repair");
@@ -231,16 +234,16 @@ public class InvoiceData {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-
-		// Connect to database using connectToDatabase method in DatabaseInfo.java
-		Connection conn = DatabaseInfo.connectToDatabase();
 		
 		// Check if a product with this productCode already exists (using the getProductID method)
-		int productID = getProductID(conn, productCode);
+		int productID = getProductID(productCode);
 		if (productID != 0) {
 			// If the record is already being used, exit the function and do not insert it again
 			return;
 		}
+		
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
 		
 		// Create a towing product using the given arguments as appropriate fields
 		String query = "INSERT INTO Product (productCode, productType, label, costPerMile) " +
@@ -254,8 +257,7 @@ public class InvoiceData {
 			ps.setString(1, productCode);
 			ps.setString(2, productLabel);
 			ps.setFloat(3, (float)costPerMile);
-			ps.executeUpdate();
-			
+			rs = ps.executeQuery();
 			rs.close();
 		} catch (SQLException e) {
 			System.out.println("SQLException: Couldn't create new repair");
@@ -286,16 +288,16 @@ public class InvoiceData {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-
-		// Connect to database using connectToDatabase method in DatabaseInfo.java
-		Connection conn = DatabaseInfo.connectToDatabase();
 		
 		// Check if a product with this productCode already exists (using the getProductID method)
-		int productID = getProductID(conn, productCode);
+		int productID = getProductID(productCode);
 		if (productID != 0) {
 			// If the record is already being used, exit the function and do not insert it again
 			return;
 		}
+		
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
 		
 		// Create a rental product using the given arguments as appropriate fields
 		String query = "INSERT INTO Product (productCode, productType, label, dailyCost, deposit, cleaningFee) " +
@@ -311,8 +313,7 @@ public class InvoiceData {
 			ps.setFloat(3, (float)dailyCost);
 			ps.setFloat(4, (float)deposit);
 			ps.setFloat(5, (float)cleaningFee);
-			ps.executeUpdate();
-			
+			rs = ps.executeQuery();
 			rs.close();
 		} catch (SQLException e) {
 			System.out.println("SQLException: Couldn't create new repair");
@@ -325,7 +326,13 @@ public class InvoiceData {
 	 * 11. Removes all invoice records from the database
 	 */
 	public static void removeAllInvoices() {
-        /* TODO*/
+		// A method that removes all members of the Invoice table (NOTE: does not drop the table, only empties it)
+		
+		// First, remove all records in Purchase table (b/c they reference Invoice records as foreign keys)
+		emptyTable("Purchase");
+		
+		// Now, remove all records from Invoice table
+		emptyTable("Invoice");
 	}
 
 	/**
@@ -337,6 +344,12 @@ public class InvoiceData {
 	 */
 	public static void addInvoice(String invoiceCode, String ownerCode, String customerCode) {
 		/* TODO*/
+		
+		
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
+		
+		
 	}
 
 	/**
@@ -393,17 +406,20 @@ public class InvoiceData {
     	/* TODO*/
     }
 
-    public static int getProductID(Connection conn, String productCode) {
+    public static int getProductID(String productCode) {
     	// A method to return a product_id for a specific productCode if it exists in the connected database
     	// and return 0 if it does not yet exist
     	
-    	int productID = 0;
+    	// Connect to database using connectToDatabase method in DatabaseInfo.java
+    	Connection conn = DatabaseInfo.connectToDatabase();
     	
+    	int productID = 0;
     	String query = "SELECT product_id FROM Product WHERE productCode = ?";
 		
     	PreparedStatement ps = null;
 		ResultSet rs = null;
     	
+		// Execute query. Update productID if a matching entry in the database is found
 		try {
 			ps = conn.prepareStatement(query);
 			ps.setString(1, productCode);
@@ -419,5 +435,32 @@ public class InvoiceData {
 		}
 		
 		return productID;
+	}
+    
+    public static void emptyTable(String table) {
+		// A generic method that removes all records from the specified table 
+    	// NOTE: does not DROP the table, only empties it
+		
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		// Build query
+		String query = "DELETE FROM ?";
+		
+		// Execute query for specified table
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, table);
+			rs = ps.executeQuery();
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: Couldn't remove table " + table);
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
 	}
 }
