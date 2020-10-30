@@ -343,12 +343,47 @@ public class InvoiceData {
 	 * @param customertCode
 	 */
 	public static void addInvoice(String invoiceCode, String ownerCode, String customerCode) {
-		/* TODO*/
-		
+		//Check whether String arguments are empty, throw exception if so
+		try {
+			if (invoiceCode==null || invoiceCode.trim().isEmpty() || ownerCode==null || ownerCode.trim().isEmpty()
+					|| customerCode==null || customerCode.trim().isEmpty()) {
+				throw new Exception();
+			}
+		} catch (Exception e) {
+			System.out.println("RuntimeException: Missing values in one or more field(s)");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 		
 		// Connect to database using connectToDatabase method in DatabaseInfo.java
 		Connection conn = DatabaseInfo.connectToDatabase();
 		
+		// Check if an invoice with this invoiceCode already exists (using the getInvoiceID method)
+		int invoiceID = getProductID(invoiceCode);
+		if (invoiceID != 0) {
+			// If the record is already being used, exit the function and do not insert it again
+			return;
+		}
+		
+		// Create an invoice using the given arguments as appropriate fields
+		String query = "INSERT INTO Invoice (invoiceCode, person_id, customer_id) VALUES " +
+					   "(?, (select person_id from Person where personCode = ?), (select customer_id from Customer where customerCode = ?))";
+		
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, invoiceCode);
+			ps.setString(2, ownerCode);
+			ps.setString(3, customerCode);
+			rs = ps.executeQuery();
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: Couldn't create new invoice");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 		
 	}
 
@@ -363,6 +398,47 @@ public class InvoiceData {
 	 */
 	public static void addTowingToInvoice(String invoiceCode, String productCode, double milesTowed) {
 		/* TODO*/
+		//Check whether String arguments are empty, throw exception if so
+		try {
+			if (invoiceCode==null || invoiceCode.trim().isEmpty() || productCode==null || productCode.trim().isEmpty()) {
+				throw new Exception();
+			}
+		} catch (Exception e) {
+			System.out.println("RuntimeException: Missing values in one or more field(s)");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
+		
+		// Make sure an invoice with this invoiceCode exists
+		int invoiceID = getProductID(invoiceCode);
+		if (invoiceID == 0) {
+			// If the invoice does not exist, exit the function
+			return;
+		}
+		
+		// Create an invoice using the given arguments as appropriate fields
+		String query = "INSERT INTO Purchase (invoice_id, product_id, milesTowed) VALUES " +
+					   "((select invoice_id from Invoice where invoiceCode = ?), (select product_id from Product where productCode = ?), ?)";
+		
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, invoiceCode);
+			ps.setString(2, productCode);
+			ps.setFloat(3, (float)milesTowed);
+			rs = ps.executeQuery();
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: Couldn't add towing purchase to invoice " + invoiceCode);
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
 	}
 
 	/**
@@ -436,6 +512,37 @@ public class InvoiceData {
 		
 		return productID;
 	}
+    
+    public static int getInvoiceID(String invoiceCode) {
+    	// A method to return an invoice_id for a specific invoiceCode if it exists in the connected database
+    	// and return 0 if it does not yet exist
+    	
+    	// Connect to database using connectToDatabase method in DatabaseInfo.java
+    	Connection conn = DatabaseInfo.connectToDatabase();
+    	
+    	int invoiceID = 0;
+    	String query = "SELECT invoice_id FROM Invoice WHERE invoiceCode = ?";
+		
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+    	
+		// Execute query. Update invoiceID if a matching entry in the database is found
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, invoiceCode);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				invoiceID = rs.getInt("invoice_id");
+			}
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: could not search for invoiceCode");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+		return invoiceID;
+    }
     
     public static void emptyTable(String table) {
 		// A generic method that removes all records from the specified table 

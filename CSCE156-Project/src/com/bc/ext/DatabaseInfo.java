@@ -15,6 +15,7 @@ public class DatabaseInfo {
 	public static final String PASSWORD = "4M8OcroP";
 	public static final String URL = "jdbc:mysql://cse.unl.edu/" + USERNAME + PARAMETERS;
 	
+	// Bonus for Assignment 5
 	public static Connection connectToDatabase() {
 		// A method that can be called to create a connection to the SQL database using 
 		// the credentials above and returns the connection
