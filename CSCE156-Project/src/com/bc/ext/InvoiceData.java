@@ -41,7 +41,22 @@ public class InvoiceData {
 	 * 1. Method that removes every person record from the database
 	 */
 	public static void removeAllPersons() {
-		/* TODO*/
+		// A method that removes all members of the Person table (NOTE: does not drop the table, only empties it)
+		
+		// First, remove all records in Email table (b/c they reference Persons as foreign keys)
+		emptyTable("Email");
+		
+		// Next, remove all records from PersonCustomer table (b/c they reference Persons as foreign keys)
+		emptyTable("PersonCustomer");
+		
+		// Next, remove all records in Purchase table (b/c they reference Invoices which reference Persons as foreign keys)
+		emptyTable("Purchase");
+		
+		// Now, remove all records in Invoice table (b/c they reference Persons as foreign keys)
+		emptyTable("Invoice");
+		
+		// Finally, remove all records from Person table
+		emptyTable("Person");
 	}
 
 	/**
@@ -57,7 +72,59 @@ public class InvoiceData {
 	 * @param country
 	 */
 	public static void addPerson(String personCode, String firstName, String lastName, String street, String city, String state, String zip, String country) {
-		/* TODO*/
+		// A method to add a new person record to the database
+		
+		// Check if necessary String arguments have values (personCode, firstName, lastName, street, and country) and throw exception if any are empty
+		try {
+			if (personCode==null || personCode.trim().isEmpty() || firstName==null || firstName.trim().isEmpty()
+					|| lastName==null || lastName.trim().isEmpty() || street==null || street.trim().isEmpty()
+					|| country==null || country.trim().isEmpty()) {
+				throw new Exception();
+			}
+		} catch (Exception e) {
+			System.out.println("RuntimeException: Missing values in one or more needed fields");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+		// Check if a Person with this personCode already exists (using the getID function)
+		int personID = getID("Person", personCode);
+		if (personID != 0) {
+			// If the person already exists in the table, exit the function
+			return;
+		}
+		
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
+		
+		// Get the address_id for the address if it exists, or create a new address and return the generated address_id if it doesn't
+		// (using getAddressID and addAdress functions)
+		int addressID = getAddressID(street, city, zip, state, country);
+		if (addressID == 0) {
+			addressID = addAddress(street, city, zip, state, country);
+		}
+		
+		// Define query for creating the new person
+		String query = "INSERT INTO Person (personCode, firstName, lastName, address_id) "
+				+ "VALUES (?, ?, ?, ?)";
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		// Execute query for given arguments to create new person record
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, personCode);
+			ps.setString(2, firstName);
+			ps.setString(3, lastName);
+			ps.setInt(4, addressID);
+			rs = ps.executeQuery();
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: Couldn't create new person record");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
@@ -68,14 +135,65 @@ public class InvoiceData {
 	 * @param email
 	 */
 	public static void addEmail(String personCode, String email) {
-		/* TODO*/
+		// A method to add associate an email with a given person record
+		
+		// Check if String arguments have values and throw exception if any are empty
+		try {
+			if (personCode==null || personCode.trim().isEmpty() || email==null || email.trim().isEmpty()) {
+				throw new Exception();
+			}
+		} catch (Exception e) {
+			System.out.println("RuntimeException: Missing values in one or more needed fields");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		// Check if a person exists in the Person table with the given personCode. If it doesn't, exit the function
+		int personID = getID("Person", personCode);
+		if (personID == 0) {
+			// Exit the function if the person doesn't exist in the database
+			return;
+		}
+		
+		// Define query to add this email record to Email table
+		String query = "INSERT INTO Email (emailName, person_id) values (?, ?)";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, email);
+			ps.setInt(2, personID);
+			rs = ps.executeQuery();
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: Couldn't add new email record");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
 	 * 4. Method that removes every customer record from the database
 	 */
 	public static void removeAllCusomters() {
-		/* TODO*/
+		// A method that removes all members of the Person table (NOTE: does not drop the table, only empties it)
+		
+		// First, remove all records from PersonCustomer table (b/c they reference Customers as foreign keys)
+		emptyTable("PersonCustomer");
+		
+		// Next, remove all records in Purchase table (b/c they reference Invoices which reference Customers as foreign keys)
+		emptyTable("Purchase");
+		
+		// Now, remove all records in Invoice table (b/c they reference Customers as foreign keys)
+		emptyTable("Invoice");
+		
+		// Finally, remove all records from Customer table
+		emptyTable("Customer");
 	}
 	
 	/**
@@ -92,7 +210,84 @@ public class InvoiceData {
 	 * @param country
 	 */
 	public static void addCustomer(String customerCode, String customerType, String primaryContactPersonCode, String name, String street, String city, String state, String zip, String country) {
-		/* TODO*/
+		// A method to add a new customer record to the database
+		
+		// Check if necessary String arguments have values (personCode, firstName, lastName, street, and country) and throw exception if any are empty
+		try {
+			if (customerCode==null || customerCode.trim().isEmpty() || customerType==null || customerType.trim().isEmpty()
+					|| primaryContactPersonCode==null || primaryContactPersonCode.trim().isEmpty() || name==null || name.trim().isEmpty() 
+					|| street==null || street.trim().isEmpty() || country==null || country.trim().isEmpty()) {
+				throw new Exception();
+			}
+		} catch (Exception e) {
+			System.out.println("RuntimeException: Missing values in one or more needed fields");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+		// Check if a Customer with this customerCode already exists. If so, exit the function
+		int customerID = getID("Customer", customerCode);
+		if (customerID == 0) {
+			// If the customer already exists, exit the function
+			return;
+		}
+		
+		// Check if a Person with this personCode exists. Exit the function if it doesn't
+		int personID = getID("Person", primaryContactPersonCode);
+		if (personID == 0) {
+			// If the person doesn't exist, exit the function
+			return;
+		}
+		
+		// Get the address_id for the address if it exists, or create a new address and return the generated address_id if it doesn't
+		// (using getAddressID and addAdress functions)
+		int addressID = getAddressID(street, city, zip, state, country);
+		if (addressID == 0) {
+			addressID = addAddress(street, city, zip, state, country);
+		}
+		
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
+		
+		// Define query for creating the new customer
+		String query = "INSERT INTO Customer (customerCode, customerName, customerType, address_id) "
+				+ "VALUES (?, ?, ?, ?)";
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		// Execute query for given arguments to create new customer record. Retrieve the generated customer_id
+		try {
+			ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, customerCode);
+			ps.setString(2, name);
+			ps.setString(3, customerType);
+			ps.setInt(4, addressID);
+			ps.executeUpdate();
+			rs = ps.getGeneratedKeys();
+			rs.next();
+			customerID = rs.getInt(1);
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: Couldn't create new customer record");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+		// Associate the primary contact with the new customer by adding new entry to PersonCustomer table
+		query = "INSERT INTO PersonCustomer (person_id, customer_id) VALUES (?, ?)";
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, personID);
+			ps.setInt(2, customerID);
+			rs = ps.executeQuery();
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: Couldn't associate person and customer");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 	
 	/**
@@ -129,8 +324,8 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 		
-		// Check if a product with this productCode already exists (using the getProductID method)
-		int productID = getProductID(productCode);
+		// Check if a product with this productCode already exists (using the getID function)
+		int productID = getID("Invoice", productCode);
 		if (productID != 0) {
 			// If the record is already being used, exit the function and do not insert it again
 			return;
@@ -182,8 +377,8 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 		
-		// Check if a product with this productCode already exists (using the getProductID method)
-		int productID = getProductID(productCode);
+		// Check if a product with this productCode already exists (using the getID function)
+		int productID = getID("Invoice", productCode);
 		if (productID != 0) {
 			// If the record is already being used, exit the function and do not insert it again
 			return;
@@ -235,8 +430,8 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 		
-		// Check if a product with this productCode already exists (using the getProductID method)
-		int productID = getProductID(productCode);
+		// Check if a product with this productCode already exists (using the getID function)
+		int productID = getID("Invoice", productCode);
 		if (productID != 0) {
 			// If the record is already being used, exit the function and do not insert it again
 			return;
@@ -289,8 +484,8 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 		
-		// Check if a product with this productCode already exists (using the getProductID method)
-		int productID = getProductID(productCode);
+		// Check if a product with this productCode already exists (using the getID function)
+		int productID = getID("Invoice", productCode);
 		if (productID != 0) {
 			// If the record is already being used, exit the function and do not insert it again
 			return;
@@ -343,6 +538,8 @@ public class InvoiceData {
 	 * @param customertCode
 	 */
 	public static void addInvoice(String invoiceCode, String ownerCode, String customerCode) {
+		// A method that adds an invoice to the database
+		
 		//Check whether String arguments are empty, throw exception if so
 		try {
 			if (invoiceCode==null || invoiceCode.trim().isEmpty() || ownerCode==null || ownerCode.trim().isEmpty()
@@ -358,10 +555,10 @@ public class InvoiceData {
 		// Connect to database using connectToDatabase method in DatabaseInfo.java
 		Connection conn = DatabaseInfo.connectToDatabase();
 		
-		// Check if an invoice with this invoiceCode already exists (using the getInvoiceID method)
-		int invoiceID = getProductID(invoiceCode);
+		// Check if an invoice with this invoiceCode already exists (using the getID function)
+		int invoiceID = getID("Invoice", invoiceCode);
 		if (invoiceID != 0) {
-			// If the record is already being used, exit the function and do not insert it again
+			// If the invoiceCode is already being used, exit the function and do not insert it again
 			return;
 		}
 		
@@ -384,7 +581,6 @@ public class InvoiceData {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-		
 	}
 
 	/**
@@ -397,7 +593,8 @@ public class InvoiceData {
 	 * @param milesTowed
 	 */
 	public static void addTowingToInvoice(String invoiceCode, String productCode, double milesTowed) {
-		/* TODO*/
+		// A method that adds a towing purchase to an invoice
+		
 		//Check whether String arguments are empty, throw exception if so
 		try {
 			if (invoiceCode==null || invoiceCode.trim().isEmpty() || productCode==null || productCode.trim().isEmpty()) {
@@ -412,14 +609,15 @@ public class InvoiceData {
 		// Connect to database using connectToDatabase method in DatabaseInfo.java
 		Connection conn = DatabaseInfo.connectToDatabase();
 		
-		// Make sure an invoice with this invoiceCode exists
-		int invoiceID = getProductID(invoiceCode);
-		if (invoiceID == 0) {
-			// If the invoice does not exist, exit the function
+		// Make sure that both an invoice with this invoiceCode and a product with this productCode exist
+		int invoiceID = getID("Invoice", invoiceCode);
+		int productID = getID("Product", productCode);
+		if (invoiceID == 0 || productID == 0) {
+			// If the invoice or the product do not exist, exit the function
 			return;
 		}
 		
-		// Create an invoice using the given arguments as appropriate fields
+		// Create a towing object in the Purchase table and link it to the provided invoiceCode
 		String query = "INSERT INTO Purchase (invoice_id, product_id, milesTowed) VALUES " +
 					   "((select invoice_id from Invoice where invoiceCode = ?), (select product_id from Product where productCode = ?), ?)";
 		
@@ -438,7 +636,6 @@ public class InvoiceData {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-		
 	}
 
 	/**
@@ -451,7 +648,49 @@ public class InvoiceData {
 	 * @param hoursWorked
 	 */
 	public static void addRepairToInvoice(String invoiceCode, String productCode, double hoursWorked) {
-		/* TODO*/
+		// A method that adds a repair purchase to an invoice
+		
+		//Check whether String arguments are empty, throw exception if so
+		try {
+			if (invoiceCode==null || invoiceCode.trim().isEmpty() || productCode==null || productCode.trim().isEmpty()) {
+				throw new Exception();
+			}
+		} catch (Exception e) {
+			System.out.println("RuntimeException: Missing values in one or more field(s)");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
+		
+		// Make sure that both an invoice with this invoiceCode and a product with this productCode exist
+		int invoiceID = getID("Invoice", invoiceCode);
+		int productID = getID("Product", productCode);
+		if (invoiceID == 0 || productID == 0) {
+			// If the invoice or the product do not exist, exit the function
+			return;
+		}
+		
+		// Create a repair object in the Purchase table and link it to the provided invoiceCode
+		String query = "INSERT INTO Purchase (invoice_id, product_id, hoursWorked) VALUES " +
+					   "((select invoice_id from Invoice where invoiceCode = ?), (select product_id from Product where productCode = ?), ?)";
+		
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, invoiceCode);
+			ps.setString(2, productCode);
+			ps.setFloat(3, (float)hoursWorked);
+			rs = ps.executeQuery();
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: Couldn't add repair purchase to invoice " + invoiceCode);
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 
      /**
@@ -466,7 +705,60 @@ public class InvoiceData {
       * @param repairCode
       */
     public static void addConcessionToInvoice(String invoiceCode, String productCode, int quantity, String repairCode) {
-    	/* TODO*/
+    	// A method that adds a concession purchase to an invoice
+    	
+    	//Check whether String arguments are empty (except for repairCode), throw exception if so
+		try {
+			if (invoiceCode==null || invoiceCode.trim().isEmpty() || productCode==null || productCode.trim().isEmpty()) {
+				throw new Exception();
+			}
+		} catch (Exception e) {
+			System.out.println("RuntimeException: Missing values in one or more field(s)");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
+		
+		// Make sure that both an invoice with this invoiceCode and a product with this productCode exist
+		int invoiceID = getID("Invoice", invoiceCode);
+		int productID = getID("Product", productCode);
+		if (invoiceID == 0 || productID == 0) {
+			// If either the invoice or the product do not exist, exit the function
+			return;
+		}
+		
+		// If repairCode is not null, check that a product with this code exists in the Product table
+		if (repairCode != null) {
+			productID = getID("Product", repairCode);
+			if (productID == 0) {
+				// If the repairCode is not a valid productCode, exit the function
+				return;
+			}
+		}
+		
+		// Create a concession object in the Purchase table and link it to the provided invoiceCode
+		String query = "INSERT INTO Purchase (invoice_id, product_id, hoursWorked) VALUES "
+					   + "((select invoice_id from Invoice where invoiceCode = ?), (select product_id from Product where productCode = ?), "
+					   + "?, (select product_id from Product where productCode = ?))";
+		
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, invoiceCode);
+			ps.setString(2, productCode);
+			ps.setInt(3, quantity);
+			ps.setString(4, repairCode);
+			rs = ps.executeQuery();
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: Couldn't add concession purchase to invoice " + invoiceCode);
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
     }
 	
     /**
@@ -479,74 +771,54 @@ public class InvoiceData {
      * @param daysRented
      */
     public static void addRentalToInvoice(String invoiceCode, String productCode, double daysRented) {
-    	/* TODO*/
-    }
-
-    public static int getProductID(String productCode) {
-    	// A method to return a product_id for a specific productCode if it exists in the connected database
-    	// and return 0 if it does not yet exist
+    	// A method that adds a rental purchase to an invoice
     	
-    	// Connect to database using connectToDatabase method in DatabaseInfo.java
-    	Connection conn = DatabaseInfo.connectToDatabase();
-    	
-    	int productID = 0;
-    	String query = "SELECT product_id FROM Product WHERE productCode = ?";
-		
-    	PreparedStatement ps = null;
-		ResultSet rs = null;
-    	
-		// Execute query. Update productID if a matching entry in the database is found
+    	//Check whether String arguments are empty, throw exception if so
 		try {
-			ps = conn.prepareStatement(query);
-			ps.setString(1, productCode);
-			rs = ps.executeQuery();
-			if(rs.next()) {
-				productID = rs.getInt("product_id");
+			if (invoiceCode==null || invoiceCode.trim().isEmpty() || productCode==null || productCode.trim().isEmpty()) {
+				throw new Exception();
 			}
-			rs.close();
-		} catch (SQLException e) {
-			System.out.println("SQLException: could not search for productCode");
+		} catch (Exception e) {
+			System.out.println("RuntimeException: Missing values in one or more field(s)");
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 		
-		return productID;
-	}
-    
-    public static int getInvoiceID(String invoiceCode) {
-    	// A method to return an invoice_id for a specific invoiceCode if it exists in the connected database
-    	// and return 0 if it does not yet exist
-    	
-    	// Connect to database using connectToDatabase method in DatabaseInfo.java
-    	Connection conn = DatabaseInfo.connectToDatabase();
-    	
-    	int invoiceID = 0;
-    	String query = "SELECT invoice_id FROM Invoice WHERE invoiceCode = ?";
+		// Connect to database using connectToDatabase method in DatabaseInfo.java
+		Connection conn = DatabaseInfo.connectToDatabase();
+		
+		// Make sure that both an invoice with this invoiceCode and a product with this productCode exist
+		int invoiceID = getID("Invoice", invoiceCode);
+		int productID = getID("Product", productCode);
+		if (invoiceID == 0 || productID == 0) {
+			// If the invoice or the product do not exist, exit the function
+			return;
+		}
+		
+		// Create a rental object in the Purchase table and link it to the provided invoiceCode
+		String query = "INSERT INTO Purchase (invoice_id, product_id, hoursWorked) VALUES " +
+					   "((select invoice_id from Invoice where invoiceCode = ?), (select product_id from Product where productCode = ?), ?)";
 		
     	PreparedStatement ps = null;
 		ResultSet rs = null;
-    	
-		// Execute query. Update invoiceID if a matching entry in the database is found
+		
 		try {
 			ps = conn.prepareStatement(query);
 			ps.setString(1, invoiceCode);
+			ps.setString(2, productCode);
+			ps.setFloat(3, (float)daysRented);
 			rs = ps.executeQuery();
-			if(rs.next()) {
-				invoiceID = rs.getInt("invoice_id");
-			}
 			rs.close();
 		} catch (SQLException e) {
-			System.out.println("SQLException: could not search for invoiceCode");
+			System.out.println("SQLException: Couldn't add rental purchase to invoice " + invoiceCode);
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-		
-		return invoiceID;
     }
     
     public static void emptyTable(String table) {
 		// A generic method that removes all records from the specified table 
-    	// NOTE: does not DROP the table, only empties it
+    	// NOTE: does not DROP the table, only empties it of all records
 		
 		// Connect to database using connectToDatabase method in DatabaseInfo.java
 		Connection conn = DatabaseInfo.connectToDatabase();
@@ -568,6 +840,186 @@ public class InvoiceData {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-		
 	}
+    
+    public static int getID(String table, String code) {
+    	// A generic method to return an id for a specific code if it exists in the specified table
+    	// in the connected database. Returns 0 if the code does not yet exist in the table
+    	
+    	// Connect to database using connectToDatabase method in DatabaseInfo.java
+    	Connection conn = DatabaseInfo.connectToDatabase();
+    	
+    	String idToSearchFor = null;
+    	String codeToSearchFor = null;
+    	
+    	// Set idToSearchFor and codeToSearchFor according to which table is being queried
+    	if (table.equals("Person")) {
+    		idToSearchFor = "person_id";
+    		codeToSearchFor = "personCode";
+    	}
+    	else if (table.equals("Customer")) {
+    		idToSearchFor = "customer_id";
+    		codeToSearchFor = "customerCode";
+    	}
+    	else if (table.equals("Invoice")) {
+    		idToSearchFor = "invoice_id";
+    		codeToSearchFor = "invoiceCode";
+    	}
+    	else if (table.equals("Product")) {
+    		idToSearchFor = "product_id";
+    		codeToSearchFor = "productCode";
+    	}
+    	else if (table.equals("State")) {
+    		idToSearchFor = "state_id";
+    		codeToSearchFor = "name";
+    	}
+    	else if (table.equals("Country")) {
+    		idToSearchFor = "country_id";
+    		codeToSearchFor = "name";
+    	}
+    	
+    	int returnedID = 0;
+    	String query = "SELECT ? FROM ? WHERE ? = ?";
+		
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+    	
+		// Execute query with appropriate arguments. Update returnedID if a matching entry in the database is found
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, idToSearchFor);
+			ps.setString(2, table);
+			ps.setString(3, codeToSearchFor);
+			ps.setString(4, code);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				returnedID = rs.getInt(idToSearchFor);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: could not search for code " + code + "in table " + table);
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+		return returnedID;
+    }
+    
+    public static int getAddressID (String street, String city, String zip, String state, String country) {
+    	// A method to check if the given address exists in the Address table. Return the address_id if it exists, or return 0 if not.
+    	
+    	// Connect to database using connectToDatabase method in DatabaseInfo.java
+    	Connection conn = DatabaseInfo.connectToDatabase();
+    	
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		// Initialize addressID to 0 and define query
+		int addressID = 0;
+		String query = "SELECT address_id FROM Address WHERE street = ? AND city = ? AND zip = ? "
+						+ "AND state_id = (SELECT state_id FROM State WHERE name = ?) "
+						+ "AND country_id = (SELECT country_id FROM Country WHERE name = ?)";
+    	
+		// Execute query with given arguments. Set addressID to equal any returned address_id
+    	try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, street);
+			ps.setString(2, city);
+			ps.setString(3, zip);
+			ps.setString(4, state);
+			ps.setString(5, country);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				addressID = rs.getInt("address_id");
+			}
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: could not search for address");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+    	
+    	return addressID;
+    }
+    
+    public static int addAddress (String street, String city, String zip, String state, String country) {
+    	// A method to create a new entry in the Address table. Returns the generated address_id
+    	
+    	int addressID = 0;
+    	
+    	// Connect to database using connectToDatabase method in DatabaseInfo.java
+    	Connection conn = DatabaseInfo.connectToDatabase();
+    	
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = null;
+		
+		// Check if state is null. If not, check if the state exists in the State table and, if not, insert it
+		if (state != null) {
+	    	if (getID("State", state) == 0) {
+	    		// Create a new state entry
+	    		query = "INSERT INTO State (name) VALUES (?)";
+	    		try {
+	    			ps = conn.prepareStatement(query);
+	    			ps.setString(1, state);
+	    			rs = ps.executeQuery();
+	    			rs.close();
+	    		} catch (SQLException e) {
+	    			System.out.println("SQLException: could not create new state " + state);
+	    			e.printStackTrace();
+	    			throw new RuntimeException(e);
+	    		}
+	    	}
+		}
+    	
+    	// Check if the country exists in the Country table and, if not, insert it
+    	if (getID("Country", country) == 0) {
+    		// Create a new country entry
+    		query = "INSERT INTO Country (name) VALUES (?)";
+    		try {
+    			ps = conn.prepareStatement(query);
+    			ps.setString(1, country);
+    			rs = ps.executeQuery();
+    			rs.close();
+    		} catch (SQLException e) {
+    			System.out.println("SQLException: could not create new country " + country);
+    			e.printStackTrace();
+    			throw new RuntimeException(e);
+    		}
+    	}
+    	
+    	// Define the query depending on whether or not state is null
+    	if (state!=null) {
+    		query = "INSERT INTO Address (street, city, zip, country_id) VALUES "
+    				+ "(?, ?, ?, (select country_id from Country where name = ?)";
+    	}
+    	else {
+    		query = "INSERT INTO Address (street, city, zip, country_id, state_id) VALUES "
+    				+ "(?, ?, ?,  (select country_id from Country where name = ?), (select state_id from State where name = ?)";
+    	}
+    	
+    	// Execute query
+    	try {
+			ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, street);
+			ps.setString(2, city);
+			ps.setString(3, zip);
+			ps.setString(4, country);
+			if (state!=null) {
+				ps.setString(5, state);
+			}
+			ps.executeUpdate();
+			rs = ps.getGeneratedKeys();
+			rs.next();
+			addressID = rs.getInt(1);
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("SQLException: Couldn't create new address");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+    	
+    	return addressID;
+    }
+    
 }
