@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.bc.ConcessionPurchase" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/ConcessionPurchase.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1317" y="1067"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.bc.Address" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/Address.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="490" y="725"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.bc.Rental" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/Rental.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1877" y="492"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.bc.RentalPurchase" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/RentalPurchase.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="887" y="1036"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.bc.Product" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/Product.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1558" y="665"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.bc.Concession" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/Concession.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1869" y="845"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.bc.Customer" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/Customer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="755" y="396"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.bc.RepairPurchase" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/RepairPurchase.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1078" y="1038"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="com.bc.Purchase" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/Purchase.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="174" width="175" x="1184" y="627"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.bc.Invoice" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/Invoice.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1186" y="421"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="com.bc.Parser" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/Parser.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="179" width="515" x="1449" y="23"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.bc.Towing" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/Towing.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1825" y="986"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.bc.InvoiceReport" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/InvoiceReport.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="132" width="121" x="1134" y="49"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.bc.Person" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/Person.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="848" y="740"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="com.bc.Repair" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/Repair.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1882" y="692"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="com.bc.DataConverter" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/DataConverter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="222" width="259" x="1426" y="245"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="com.bc.TowingPurchase" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/TowingPurchase.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1559" y="1035"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="com.bc.ext.InvoiceData" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/ext/InvoiceData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="457" width="407" x="45" y="29"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="com.bc.ext.DatabaseParser" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/ext/DatabaseParser.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="182" width="522" x="488" y="29"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="com.bc.ext.DatabaseInfo" project="CSCE156-Project" 
+    file="/CSCE156-Project/src/com/bc/ext/DatabaseInfo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="178" y="606"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="21">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="22">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="23">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="24">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="25" name="address">        
+        <position height="0" width="0" x="137" y="-30"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="137" y="-30"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="29">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="30" name="primaryContact">        
+        <position height="0" width="0" x="128" y="23"/>      
+      </attribute>      
+      <multiplicity id="31" minimum="0" maximum="1">        
+        <position height="0" width="0" x="128" y="23"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="33" name="address">        
+        <position height="0" width="0" x="137" y="-30"/>      
+      </attribute>      
+      <multiplicity id="34" minimum="0" maximum="1">        
+        <position height="0" width="0" x="137" y="-30"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="36" name="person">        
+        <position height="0" width="0" x="128" y="23"/>      
+      </attribute>      
+      <multiplicity id="37" minimum="0" maximum="1">        
+        <position height="0" width="0" x="128" y="23"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="39" name="customer">        
+        <position height="0" width="0" x="101" y="-3"/>      
+      </attribute>      
+      <multiplicity id="40" minimum="0" maximum="1">        
+        <position height="0" width="0" x="101" y="-3"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="42" name="purchaseList">        
+        <position height="0" width="0" x="144" y="-10"/>      
+      </attribute>      
+      <multiplicity id="43" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="144" y="-10"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="44">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <generalization id="45">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <generalization id="46">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <association id="47">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="48" name="product">        
+        <position height="0" width="0" x="149" y="-57"/>      
+      </attribute>      
+      <multiplicity id="49" minimum="0" maximum="1">        
+        <position height="0" width="0" x="149" y="-57"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
