@@ -2,8 +2,10 @@ package com.bc;
 
 import java.util.ArrayList;
 
+import com.bc.ext.DatabaseParser;
+
 /*
- * Date: 10/4/2020
+ * Date: 11/2/2020
  * CSCE 156, Assignment 3
  * @authors Treyvor Vice, Ann Le
  * This java class outputs summary reports for objects in the Invoice class. The first report is an overview of
@@ -13,11 +15,11 @@ import java.util.ArrayList;
 public class InvoiceReport {
 	public static void main(String[] args) {
 		
-		// Build Person, Customer, Product, and Invoice ArrayLists using methods from the Parsers.java class
-		ArrayList<Person> personList = Parsers.parsePersonsList();
-		ArrayList<Customer> customerList = Parsers.parseCustomerList(personList);
-		ArrayList<Products> productsList = Parsers.parseProductsList();
-		ArrayList<Invoice> invoiceList = Parsers.parseInvoiceList(personList, customerList, productsList);
+		// Build Person, Customer, Product, and Invoice ArrayLists using methods from the DatabaseParser.java class
+		ArrayList<Person> personList = DatabaseParser.parsePersonList();
+		ArrayList<Customer> customerList = DatabaseParser.parseCustomerList(personList);
+		ArrayList<Product> productList = DatabaseParser.parseProductList();
+		ArrayList<Invoice> invoiceList = DatabaseParser.parseInvoiceList(personList, customerList, productList);
 		
 		
 		// Output the Executive Summary Report (a short summary of each invoice entry)
@@ -58,7 +60,7 @@ public class InvoiceReport {
 			System.out.println("\t" + "[" + inv.getPerson().printEmails() + "]");
 			System.out.println("\t" + inv.getPerson().getAddress().getStreet());
 			System.out.println("\t" + inv.getPerson().getAddress().getCity() + ", " + inv.getPerson().getAddress().getState()
-					+ ", " + inv.getPerson().getAddress().getCountry() + inv.getPerson().getAddress().getZip());
+					+ ", " + inv.getPerson().getAddress().getCountry() + " " + inv.getPerson().getAddress().getZip());
 			
 			// Print the customer account info
 			System.out.println("Customer:");
@@ -74,7 +76,7 @@ public class InvoiceReport {
 					+ ", " + inv.getCustomer().getAddress().getCountry() + " " + inv.getCustomer().getAddress().getZip());
 			
 			// Print the product information for all product purchases on the invoice
-			System.out.println("Products:");
+			System.out.println("Product:");
 			System.out.printf("  %-10s %10s %60s %10s %10s %10s\n", "Code", "Description", "Subtotal", "Discount", "Tax", "Total");
 			System.out.println("  ------------------------------------------------------------------------------------------------------------------------");
 			

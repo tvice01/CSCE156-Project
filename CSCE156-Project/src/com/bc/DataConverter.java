@@ -13,7 +13,7 @@ import com.thoughtworks.xstream.XStream;
  * Date: 9/18/2020
  * CSCE 156, Assignment 2
  * @authors Treyvor Vice, Ann Le
- * This java class uses the parsers from Parsers.java to build ArrayLists of Products, Customers, and Persons and then
+ * This java class uses the parsers from Parsers.java to build ArrayLists of Product, Customers, and Persons and then
  * converts this data to the xml and json formats. It outputs a .xml and a .json file for each of the 3 .dat files.
  */
 
@@ -132,23 +132,23 @@ public class DataConverter {
 	}
 	
 	
-	public static void xmlProductsBuilder(ArrayList<Products> productsList) {
+	public static void xmlProductsBuilder(ArrayList<Product> productsList) {
 	//A method used for converting a Product ArrayList to xml format and printing this to an output file
 		
-		File outFile = new File("data/Products.xml");
+		File outFile = new File("data/Product.xml");
 		PrintWriter out;
 		try {
 			out = new PrintWriter(outFile);
 			
 			out.println("<?xml version=\"1.0\"?>");
 			
-			//Use XStream to convert each of the Products in 'productsList' to xml and print to the output file
+			//Use XStream to convert each of the Product in 'productsList' to xml and print to the output file
 			XStream xstream = new XStream();
 			xstream.alias("product", Rental.class);
 			xstream.alias("product", Repair.class);
 			xstream.alias("product", Concession.class);
 			xstream.alias("product", Towing.class);
-			for (Products p : productsList) {
+			for (Product p : productsList) {
 				String xml = xstream.toXML(p);
 				out.println(xml);
 			}
@@ -159,19 +159,19 @@ public class DataConverter {
 		}
 	}
 	
-	public static void jsonProductsBuilder(ArrayList<Products> productsList) {
+	public static void jsonProductsBuilder(ArrayList<Product> productsList) {
 	//A method used for converting a Product ArrayList to json format and printing this to an output file
-		File outFile = new File("data/Products.json");
+		File outFile = new File("data/Product.json");
 		PrintWriter out;
 		try {
 			out = new PrintWriter(outFile);
 			
 			out.printf("{\n\"assets\": [\n");
 			
-			//Use GSON to convert each of the Products in 'productsList' to json and print to the output file
+			//Use GSON to convert each of the Product in 'productsList' to json and print to the output file
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			int i = 0;
-			for (Products p : productsList) {
+			for (Product p : productsList) {
 				if (i == (productsList.size()-1)) {
 					String json = gson.toJson(p);
 					out.println(json);
@@ -194,9 +194,9 @@ public class DataConverter {
 
 	public static void main(String[] args) {
 		
-		ArrayList<Person> personList = Parsers.parsePersonsList();
-		ArrayList<Customer> customerList = Parsers.parseCustomerList(personList);
-		ArrayList<Products> productsList = Parsers.parseProductsList();
+		ArrayList<Person> personList = Parser.parsePersonsList();
+		ArrayList<Customer> customerList = Parser.parseCustomerList(personList);
+		ArrayList<Product> productsList = Parser.parseProductsList();
 
 		xmlPersonsBuilder(personList);
 		xmlCustomerBuilder(customerList);

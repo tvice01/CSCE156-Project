@@ -1,8 +1,8 @@
 package com.bc;
 
 /*
- * Date: 10/4/2020
- * CSCE 156, Assignment 3
+ * Date: 11/2/2020
+ * CSCE 156
  * @authors Treyvor Vice, Ann Le
  * This class stores objects of the type Person. Every Person contains a code, firstName, lastName, address, 
  * and an array of emails.
@@ -28,8 +28,12 @@ public class Person {
 	public Address getAddress() {
 		return address;
 	}
-	public String[] getEmailAddresses() {
+	public String[] getEmails() {
 		return emails;
+	}
+	
+	public void setEmails(String[] emails) {
+		this.emails = emails;
 	}
 	
 	public Person(String code, String firstName, String lastName, Address address, String[] emails) {
@@ -41,7 +45,7 @@ public class Person {
 	}
 	
 	public String getLastFirstName() {
-		String name = this.lastName + "," + this.firstName;
+		String name = this.lastName + ", " + this.firstName;
 		return name;
 	}
 	

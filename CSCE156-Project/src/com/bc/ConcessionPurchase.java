@@ -20,7 +20,7 @@ public class ConcessionPurchase extends Purchase {
 		return this.assocRepair;
 	}
 
-	public ConcessionPurchase(Products product, int quantity, String assocRepair) {
+	public ConcessionPurchase(Product product, int quantity, String assocRepair) {
 		super(product);
 		this.quantity = quantity;
 		this.assocRepair = assocRepair;
