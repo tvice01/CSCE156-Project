@@ -1,8 +1,8 @@
 package com.bc;
 
 /*
- * Date: 10/4/2020
- * CSCE 156, Assignment 3
+ * Date: 11/2/2020
+ * CSCE 156
  * @authors Treyvor Vice, Ann Le
  * This is a subclass that extends the Purchase superclass. In addition to the fields of a Purchase, each 
  * RentalPurchase contains a daysRented integer.
@@ -10,13 +10,13 @@ package com.bc;
 
 public class RentalPurchase extends Purchase {
 
-	private int daysRented;
+	private float daysRented;
 	
-	public int getDaysRented() {
+	public float getDaysRented() {
 		return this.daysRented;
 	}
 
-	public RentalPurchase(Products product, int daysRented) {
+	public RentalPurchase(Product product, float daysRented) {
 		super(product);
 		this.daysRented = daysRented;
 	}

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.bc.ext.DatabaseParser;
 
 /*
- * Date: 10/4/2020
+ * Date: 11/2/2020
  * CSCE 156, Assignment 3
  * @authors Treyvor Vice, Ann Le
  * This java class outputs summary reports for objects in the Invoice class. The first report is an overview of
@@ -18,8 +18,8 @@ public class InvoiceReport {
 		// Build Person, Customer, Product, and Invoice ArrayLists using methods from the DatabaseParser.java class
 		ArrayList<Person> personList = DatabaseParser.parsePersonList();
 		ArrayList<Customer> customerList = DatabaseParser.parseCustomerList(personList);
-		ArrayList<Product> productsList = DatabaseParser.parseProductList();
-		ArrayList<Invoice> invoiceList = DatabaseParser.parseInvoiceList(personList, customerList, productsList);
+		ArrayList<Product> productList = DatabaseParser.parseProductList();
+		ArrayList<Invoice> invoiceList = DatabaseParser.parseInvoiceList(personList, customerList, productList);
 		
 		
 		// Output the Executive Summary Report (a short summary of each invoice entry)
@@ -60,7 +60,7 @@ public class InvoiceReport {
 			System.out.println("\t" + "[" + inv.getPerson().printEmails() + "]");
 			System.out.println("\t" + inv.getPerson().getAddress().getStreet());
 			System.out.println("\t" + inv.getPerson().getAddress().getCity() + ", " + inv.getPerson().getAddress().getState()
-					+ ", " + inv.getPerson().getAddress().getCountry() + inv.getPerson().getAddress().getZip());
+					+ ", " + inv.getPerson().getAddress().getCountry() + " " + inv.getPerson().getAddress().getZip());
 			
 			// Print the customer account info
 			System.out.println("Customer:");

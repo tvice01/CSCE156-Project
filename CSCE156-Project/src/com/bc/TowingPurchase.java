@@ -16,7 +16,7 @@ public class TowingPurchase extends Purchase {
 		return this.milesTowed;
 	}
 
-	public TowingPurchase(Products product, float milesTowed) {
+	public TowingPurchase(Product product, float milesTowed) {
 		super(product);
 		this.milesTowed = milesTowed;
 	}

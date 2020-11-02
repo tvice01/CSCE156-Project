@@ -2,7 +2,7 @@ package com.bc;
 
 /*
  * Date: 10/4/2020
- * CSCE 156, Assignment 3
+ * CSCE 156
  * @authors Treyvor Vice, Ann Le
  * This class stores objects of the type Purchase, and is a superclass for the RentalPurchase, RepairPurchase, 
  * ConcessionPurchase, and TowingPurchase classes. Every Purchase contains a product.
@@ -10,13 +10,13 @@ package com.bc;
 
 public abstract class Purchase {
 	
-	private Products product;
+	private Product product;
 
-	public Products getProduct() {
+	public Product getProduct() {
 		return this.product;
 	}
 	
-	public Purchase(Products product) {
+	public Purchase(Product product) {
 		this.product = product;
 	}
 	

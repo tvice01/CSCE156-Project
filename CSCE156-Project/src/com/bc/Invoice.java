@@ -2,6 +2,14 @@ package com.bc;
 
 import java.util.ArrayList;
 
+/*
+ * Date: 11/2/2020
+ * CSCE 156
+ * @authors Treyvor Vice, Ann Le
+ * This class stores objects of the type Invoice. Every Invoice contains an invoiceCode, person, customer, 
+ * and an ArrayList of purchases.
+ */
+
 public class Invoice {
 	
 	private String invoiceCode;
@@ -20,6 +28,10 @@ public class Invoice {
 	}
 	public ArrayList<Purchase> getPurchaseList() {
 		return this.purchaseList;
+	}
+	
+	public void setPurchaseList(ArrayList<Purchase> purchaseList) {
+		this.purchaseList = purchaseList;
 	}
 	
 	public Invoice(String invoiceCode, Person person, Customer customer, ArrayList<Purchase> purchaseList) {
@@ -137,7 +149,7 @@ public class Invoice {
 		// Check if the customer is a personal account and has 2 or more email addresses
 		// If so, add a 5% loyalty discount to invoiceDiscount
 		if (this.customer.getType().equals("P")
-				&& this.customer.getPrimaryContact().getEmailAddresses().length >= 2) {
+				&& this.customer.getPrimaryContact().getEmails().length >= 2) {
 			invoiceDiscount += (this.calculateSubTotal() - this.calculatePreTaxDiscounts()
 					+ this.calculateTax() + this.calculateFees()) * 0.05;
 		}
