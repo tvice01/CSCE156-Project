@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.bc.ext.DatabaseParser;
 
 /*
- * Date: 11/2/2020
+ * Date: 11/12/2020
  * CSCE 156, Assignment 3
  * @authors Treyvor Vice, Ann Le
  * This java class outputs summary reports for objects in the Invoice class. The first report is an overview of
@@ -21,6 +21,11 @@ public class InvoiceReport {
 		ArrayList<Product> productList = DatabaseParser.parseProductList();
 		ArrayList<Invoice> invoiceList = DatabaseParser.parseInvoiceList(personList, customerList, productList);
 		
+		// Iterate through invoiceList to add each invoice to a linked list formed from the GenericList class
+		GenericList<Invoice> invLinkedList = new GenericList<>();
+		for (Invoice inv : invoiceList) {
+			invLinkedList.addItemSorted(inv);
+		}
 		
 		// Output the Executive Summary Report (a short summary of each invoice entry)
 		System.out.println("Executive Summary Report:");
@@ -29,7 +34,7 @@ public class InvoiceReport {
 		System.out.println("-----------------------------------------------------------------------------------------------------------------");
 		float subtotal=0, fees=0, taxes=0, discount=0, total=0;
 		float subtotalTotals=0, feesTotals=0, taxesTotals=0, discountTotals=0, totalTotals=0;
-		for(Invoice inv : invoiceList){
+		for(Invoice inv : invLinkedList){
 			System.out.printf("%-10s %-20s %-20s", inv.getInvoiceCode(), inv.getPerson().getLastFirstName(), inv.getCustomer().getName());
 			subtotal = inv.calculateSubTotal();
 			fees = inv.calculateFees();
@@ -49,7 +54,7 @@ public class InvoiceReport {
 
 		// Output detailed reports for each Invoice entry
 		System.out.println("Invoice Details:");
-		for(Invoice inv: invoiceList){
+		for(Invoice inv: invLinkedList){
 			System.out.println("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 			System.out.println("Invoice " + inv.getInvoiceCode());
 			System.out.println("------------------------------------------");
@@ -102,7 +107,7 @@ public class InvoiceReport {
 				else if (p.getProduct().getType().equals("F")) {
 					description1 += p.getProduct().getLabel() + " (" + ((RepairPurchase)p).getHoursWorked() + " hour(s) of labor @ $"
 							+ ((Repair)p.getProduct()).getLaborRate() + "/hour)";
-					description2 += "(+ $" + ((Repair)p.getProduct()).getPartsCost() + "for parts)";
+					description2 += "(+ $" + ((Repair)p.getProduct()).getPartsCost() + " for parts)";
 				}
 				else if (p.getProduct().getType().equals("C")) {
 					description1 += p.getProduct().getLabel() + " (" + ((ConcessionPurchase)p).getQuantity() + " unit(s) @ $"

@@ -1,16 +1,17 @@
 package com.bc;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /*
- * Date: 11/2/2020
+ * Date: 11/12/2020
  * CSCE 156
  * @authors Treyvor Vice, Ann Le
  * This class stores objects of the type Invoice. Every Invoice contains an invoiceCode, person, customer, 
- * and an ArrayList of purchases.
+ * and an ArrayList of purchases. This class also implements the Comparator interface.
  */
 
-public class Invoice {
+public class Invoice implements Comparator<Invoice> {
 	
 	private String invoiceCode;
 	private Person person;
@@ -163,4 +164,22 @@ public class Invoice {
 		
 		return totalCost;
 	}
+	
+	@Override
+	public int compare(Invoice inv1, Invoice inv2) {
+	// Compares the total cost of the two given invoices
+		if (inv1.calculateTotalCost() > inv2.calculateTotalCost()) {
+			// If total cost of inv1 is greater than total cost of inv2, return 1
+			return 1;
+		}
+		else if (inv1.calculateTotalCost() < inv2.calculateTotalCost()) {
+			// If total cost of inv1 is less than total cost of inv2, return -1
+			return -1;
+		}
+		else {
+			// Otherwise, if the total costs are equal, return 0
+			return 0;
+		}
+	}
+	
 }
